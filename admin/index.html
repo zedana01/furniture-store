@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لوحة الإدارة والتحكم الشاملة | موبيليار هوم للأثاث</title>
+  <!-- Google Fonts: Cairo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    :root {
+      --primary: #B87342;
+      --primary-hover: #9E5D30;
+      --dark-sidebar: #1F2421;
+      --dark-header: #2C302E;
+      --bg: #F5F2EB;
+      --card-bg: #ffffff;
+      --border: #E4DCD3;
+      --border-focus: #B87342;
+      --text-main: #1F2421;
+      --text-muted: #6C7570;
+      --success: #16a34a;
+      --danger: #dc2626;
+      --warning: #d97706;
+      --font-cairo: 'Cairo', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-cairo);
+      font-size: 16px;
+      direction: rtl;
+      text-align: right;
+      background: var(--bg);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Auth Overlay */
+    .auth-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(31, 36, 33, 0.94);
+      backdrop-filter: blur(8px);
+      z-index: 99999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .auth-card {
+      background: #ffffff;
+      border-radius: 26px;
+      padding: 45px 40px;
+      width: 100%;
+      max-width: 460px;
+      text-align: center;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+    }
+    .auth-icon {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #B87342, #8E4A1E);
+      color: #ffffff;
+      border-radius: 22px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      margin: 0 auto 22px;
+      box-shadow: 0 10px 25px rgba(184, 115, 66, 0.35);
+    }
+    .auth-title { font-size: 26px; font-weight: 900; margin-bottom: 10px; color: var(--text-main); }
+    .auth-desc { font-size: 15px; color: var(--text-muted); margin-bottom: 26px; line-height: 1.6; }
+    .auth-pin-input {
+      width: 100%;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 10px;
+      text-align: center;
+      padding: 16px;
+      border: 2.5px solid var(--border);
+      border-radius: 16px;
+      outline: none;
+      margin-bottom: 22px;
+      transition: all 0.25s;
+      font-family: inherit;
+    }
+    .auth-pin-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(184, 115, 66, 0.2); }
+
+    /* Sidebar Layout */
+    .admin-sidebar {
+      width: 290px;
+      background: var(--dark-sidebar);
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 100;
+    }
+    .sidebar-brand {
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .sidebar-brand-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #ffffff;
+      box-shadow: 0 6px 16px rgba(184, 115, 66, 0.4);
+    }
+    .sidebar-brand-text h2 { font-size: 19px; font-weight: 900; line-height: 1.2; color: #ffffff; }
+    .sidebar-brand-text span { font-size: 11.5px; color: #D4A373; font-weight: 700; letter-spacing: 0.5px; }
+
+    .sidebar-menu { list-style: none; padding: 18px 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .menu-btn {
+      width: 100%;
+      background: transparent;
+      border: none;
+      color: #ECE7DF;
+      padding: 14px 18px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15.5px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: inherit;
+      text-align: right;
+    }
+    .menu-btn i { font-size: 18px; width: 26px; text-align: center; color: #A4ACA7; transition: color 0.2s; }
+    .menu-btn:hover { background: rgba(255, 255, 255, 0.08); color: #ffffff; }
+    .menu-btn:hover i { color: #D4A373; }
+    .menu-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(184, 115, 66, 0.35);
+    }
+    .menu-btn.active i { color: #ffffff; }
+
+    .sidebar-footer {
+      padding: 18px 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* Main Content Area */
+    .admin-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .admin-header {
+      background: #ffffff;
+      padding: 20px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+    }
+    .admin-header-title { font-size: 24px; font-weight: 900; color: var(--text-main); display: flex; align-items: center; gap: 12px; }
+    .admin-header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      background: #ECFDF5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .admin-body {
+      padding: 34px 40px;
+      flex: 1;
+    }
+
+    /* Cards & Form Components */
+    .card {
+      background: var(--card-bg);
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      box-shadow: 0 6px 24px rgba(31, 36, 33, 0.04);
+      padding: 30px 36px;
+      margin-bottom: 32px;
+    }
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 26px;
+      padding-bottom: 18px;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .card-title {
+      font-size: 21px;
+      font-weight: 900;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .card-desc { font-size: 15px; color: var(--text-muted); margin-top: 5px; }
+
+    /* Form Fields */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    .form-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+    .form-label {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 13px 18px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 15.5px;
+      font-family: inherit;
+      color: var(--text-main);
+      background: #FBF9F6;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--border-focus);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(184, 115, 66, 0.15);
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 26px;
+      border-radius: 12px;
+      font-size: 15.5px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      font-family: inherit;
+      border: none;
+      text-decoration: none;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(184, 115, 66, 0.28);
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(184, 115, 66, 0.38);
+    }
+    .btn-success {
+      background: var(--success);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(22, 163, 74, 0.25);
+    }
+    .btn-success:hover {
+      background: #15803d;
+      transform: translateY(-1px);
+    }
+    .btn-secondary {
+      background: #F4EBE2;
+      color: #3F4743;
+      border: 1.5px solid #D2C7B8;
+    }
+    .btn-secondary:hover {
+      background: #ECE7DF;
+      color: #1F2421;
+    }
+    .btn-danger {
+      background: #fee2e2;
+      color: var(--danger);
+      border: 1px solid #fca5a5;
+    }
+    .btn-danger:hover {
+      background: var(--danger);
+      color: #ffffff;
+    }
+
+    /* Sub Tabs (for CMS & Pages) */
+    .cms-tabs-bar {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 26px;
+      border-bottom: 2px solid var(--border);
+    }
+    .cms-tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 22px;
+      background: #ffffff;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      font-family: inherit;
+    }
+    .cms-tab-btn:hover { color: var(--primary); border-color: var(--primary); }
+    .cms-tab-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(184, 115, 66, 0.3);
+    }
+
+    /* Tables */
+    .table-container {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: #ffffff;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: right;
+    }
+    th {
+      background: #FBF9F6;
+      padding: 18px 22px;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--text-main);
+      border-bottom: 2px solid var(--border);
+    }
+    td {
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+      vertical-align: middle;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #FAF7F2; }
+
+    /* Modals */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(31, 36, 33, 0.7);
+      backdrop-filter: blur(5px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-card {
+      background: #ffffff;
+      border-radius: 26px;
+      width: 100%;
+      max-width: 720px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+    }
+    .modal-header {
+      padding: 24px 30px;
+      border-bottom: 1.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 10;
+    }
+    .modal-body { padding: 28px 30px; }
+    .modal-footer {
+      padding: 20px 30px;
+      border-top: 1.5px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 14px;
+      background: #FBF9F6;
+      border-radius: 0 0 26px 26px;
+    }
+
+    /* Toast */
+    .toast-box {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      background: #1F2421;
+      color: #ffffff;
+      padding: 18px 26px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 15.5px;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.15);
+      z-index: 999999;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .toast-box.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+    /* Category banner card preview */
+    .cat-banner-preview-box {
+      width: 100%;
+      height: 140px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1.5px solid var(--border);
+      margin-top: 10px;
+      background: #ECE7DF;
+      position: relative;
+    }
+    .cat-banner-preview-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 1024px) {
+      .admin-sidebar { width: 85px; }
+      .sidebar-brand-text, .menu-btn span, .sidebar-footer span { display: none; }
+      .sidebar-brand { justify-content: center; padding: 20px 0; }
+      .menu-btn { justify-content: center; padding: 16px 0; }
+      .admin-header { padding: 16px 20px; }
+      .admin-body { padding: 20px; }
+      .form-grid, .form-grid-3 { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- AUTHENTICATION SCREEN OVERLAY -->
+  <div id="authScreen" class="auth-overlay">
+    <div class="auth-card">
+      <div class="auth-icon"><i class="fa-solid fa-couch"></i></div>
+      <h1 class="auth-title">تسجيل الدخول الإداري</h1>
+      <p class="auth-desc">أدخل رمز الدخول السري (PIN) للوصول إلى لوحة إدارة متجر موبيليار هوم للأثاث:</p>
+      <form onsubmit="handleAuth(event)">
+        <input type="password" id="pinInput" class="auth-pin-input" maxlength="6" placeholder="••••" autofocus required>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16.5px;">
+          <i class="fa-solid fa-arrow-right-to-bracket"></i> دخول إلى لوحة الإدارة
+        </button>
+      </form>
+      <div id="authError" style="color: var(--danger); font-size: 14px; font-weight: 800; margin-top: 16px; display: none;">
+        <i class="fa-solid fa-circle-exclamation"></i> رمز الدخول غير صحيح، يرجى كتابة الرمز الصحيح (الافتراضي: 1234).
+      </div>
+    </div>
+  </div>
+
+  <!-- ADMIN SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="sidebar-brand">
+      <div class="sidebar-brand-icon"><i class="fa-solid fa-couch"></i></div>
+      <div class="sidebar-brand-text">
+        <h2>موبيليار هوم</h2>
+        <span>لوحة الإدارة الشاملة</span>
+      </div>
+    </div>
+
+    <ul class="sidebar-menu">
+      <li>
+        <button class="menu-btn active" onclick="switchMainTab('productsTab', this)">
+          <i class="fa-solid fa-boxes-stacked"></i>
+          <span>إدارة قطع الأثاث والمنتجات</span>
+        </button>
+      </li>
+      <li>
+        <button class="menu-btn" onclick="switchMainTab('categoriesTab', this)">
+          <i class="fa-solid fa-layer-group"></i>
+          <span>الأقسام والبانرات العريضة</span>
+        </button>
+      </li>
+      <li>
+        <button class="menu-btn" onclick="switchMainTab('cmsTab', this)">
+          <i class="fa-solid fa-file-pen"></i>
+          <span>إدارة كافة صفحات المتجر</span>
+        </button>
+      </li>
+      <li>
+        <button class="menu-btn" onclick="switchMainTab('ordersTab', this)">
+          <i class="fa-solid fa-receipt"></i>
+          <span>سجل طلبات الواتساب</span>
+        </button>
+      </li>
+      <li>
+        <button class="menu-btn" onclick="switchMainTab('settingsTab', this)">
+          <i class="fa-solid fa-sliders"></i>
+          <span>إعدادات المتجر العامة</span>
+        </button>
+      </li>
+      <li>
+        <button class="menu-btn" onclick="switchMainTab('backupTab', this)">
+          <i class="fa-solid fa-database"></i>
+          <span>النسخ الاحتياطي والبيانات</span>
+        </button>
+      </li>
+    </ul>
+
+    <div class="sidebar-footer">
+      <a href="../index.html" target="_blank" class="btn btn-secondary" style="width: 100%; font-size: 14.5px;">
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        <span>معاينة المتجر المباشر</span>
+      </a>
+      <button onclick="logoutAdmin()" class="btn btn-danger" style="width: 100%; font-size: 14.5px;">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>تسجيل الخروج</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ADMIN MAIN CONTENT -->
+  <main class="admin-main">
+    <header class="admin-header">
+      <div class="admin-header-title">
+        <i class="fa-solid fa-sliders" style="color: var(--primary);"></i>
+        <span id="currentSectionTitle">إدارة قطع الأثاث والمنتجات</span>
+      </div>
+      <div class="admin-header-badge">
+        <i class="fa-solid fa-circle-check" style="color: var(--success);"></i>
+        <span>المزامنة الفورية نشطة</span>
+      </div>
+    </header>
+
+    <div class="admin-body">
+
+      <!-- ================= 1. PRODUCTS TAB ================= -->
+      <section id="productsTab" class="tab-pane">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-boxes-stacked"></i> كتالوج قطع الأثاث المتاح</h3>
+              <p class="card-desc">أضف قطع جديدة، عدل الأسعار والمواصفات والخامات، وقم برفع الصور الفاخرة بسهولة.</p>
+            </div>
+            <button onclick="openAddProductModal()" class="btn btn-primary">
+              <i class="fa-solid fa-plus"></i> إضافة قطعة أثاث جديدة
+            </button>
+          </div>
+
+          <!-- Filter & Search Bar -->
+          <div style="display:flex; gap:16px; margin-bottom:22px; flex-wrap:wrap;">
+            <div style="flex:1; min-width:260px;">
+              <input type="text" id="adminProdSearch" oninput="filterAdminProducts()" placeholder="ابحث باسم القطعة أو الخامة أو السعر..." class="form-input">
+            </div>
+            <div style="width:240px;">
+              <select id="adminProdCatFilter" onchange="filterAdminProducts()" class="form-select">
+                <option value="all">كافة الأقسام</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Table -->
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:70px;">الصورة</th>
+                  <th>اسم القطعة</th>
+                  <th>القسم</th>
+                  <th>السعر الحالي</th>
+                  <th>السعر القديم</th>
+                  <th>الخامة والمقاس</th>
+                  <th>الحالة</th>
+                  <th style="width:140px; text-align:center;">إجراءات</th>
+                </tr>
+              </thead>
+              <tbody id="adminProductsTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 2. CATEGORIES & WIDE BANNERS TAB ================= -->
+      <section id="categoriesTab" class="tab-pane" style="display:none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-layer-group"></i> أقسام المتجر والبانرات السينمائية العريضة</h3>
+              <p class="card-desc">تحكم ببانرات الهيرو العريضة لكل تصنيف، العنوان الفرعي، والوصف الجذاب الذي يظهر أعلى الصفحة.</p>
+            </div>
+          </div>
+
+          <div id="adminCategoriesList" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:24px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= 3. CMS CONTENT TAB ================= -->
+      <section id="cmsTab" class="tab-pane" style="display:none;">
+        <!-- Sub Tabs -->
+        <div class="cms-tabs-bar">
+          <button class="cms-tab-btn active" onclick="switchCmsSubTab('cmsHome', this)"><i class="fa-solid fa-house"></i> الصفحة الرئيسية والسلايدر</button>
+          <button class="cms-tab-btn" onclick="switchCmsSubTab('cmsProduct', this)"><i class="fa-solid fa-couch"></i> صفحة تفاصيل المنتج</button>
+          <button class="cms-tab-btn" onclick="switchCmsSubTab('cmsAbout', this)"><i class="fa-solid fa-gem"></i> صفحة من نحن وقصتنا</button>
+          <button class="cms-tab-btn" onclick="switchCmsSubTab('cmsContact', this)"><i class="fa-solid fa-location-dot"></i> صفحة اتصل بنا والفروع</button>
+        </div>
+
+        <!-- 3.1 Homepage Editor -->
+        <div id="cmsHome" class="cms-sub-pane">
+          <div class="card">
+            <h3 class="card-title"><i class="fa-solid fa-bullhorn"></i> شريط الإعلانات العلوي والهاتف</h3>
+            <div class="form-grid" style="margin-top:16px;">
+              <div class="form-group">
+                <label class="form-label">نص الإعلان العلوي في كافة الصفحات:</label>
+                <input type="text" id="cmsTopbarAnnouncement" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">رقم الهاتف الظاهر بالشريط العلوي:</label>
+                <input type="text" id="cmsTopbarPhone" class="form-input">
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title"><i class="fa-solid fa-images"></i> شرائح سلايدر الهيرو الرئيسي (3 شرائح)</h3>
+            <p class="card-desc">تحكم بالصور الكبيرة العريضة، العناوين، والعروض لكل شريحة في الصفحة الرئيسية.</p>
+            
+            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; margin-top:20px;">
+              <!-- Slide 1 -->
+              <div style="background:#FBF9F6; border:1px solid var(--border); border-radius:16px; padding:18px;">
+                <h4 style="font-weight:900; margin-bottom:12px; color:var(--primary);">الشريحة الأولى:</h4>
+                <div class="form-group">
+                  <label class="form-label">العنوان الرئيسي:</label>
+                  <input type="text" id="cmsSlide1Title" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">الوصف الترويجي:</label>
+                  <textarea id="cmsSlide1Desc" rows="2" class="form-textarea"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">رابط أو مسار الصورة:</label>
+                  <input type="text" id="cmsSlide1Img" class="form-input">
+                  <input type="file" accept="image/*" onchange="handleFileToInput(this, 'cmsSlide1Img', 'cmsSlide1Preview')" style="margin-top:6px; font-size:13px;">
+                  <div class="cat-banner-preview-box"><img id="cmsSlide1Preview" src="../images/furn_hero_slide1.jpg"></div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div style="background:#FBF9F6; border:1px solid var(--border); border-radius:16px; padding:18px;">
+                <h4 style="font-weight:900; margin-bottom:12px; color:var(--primary);">الشريحة الثانية:</h4>
+                <div class="form-group">
+                  <label class="form-label">العنوان الرئيسي:</label>
+                  <input type="text" id="cmsSlide2Title" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">الوصف الترويجي:</label>
+                  <textarea id="cmsSlide2Desc" rows="2" class="form-textarea"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">رابط أو مسار الصورة:</label>
+                  <input type="text" id="cmsSlide2Img" class="form-input">
+                  <input type="file" accept="image/*" onchange="handleFileToInput(this, 'cmsSlide2Img', 'cmsSlide2Preview')" style="margin-top:6px; font-size:13px;">
+                  <div class="cat-banner-preview-box"><img id="cmsSlide2Preview" src="../images/furn_hero_slide2.jpg"></div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div style="background:#FBF9F6; border:1px solid var(--border); border-radius:16px; padding:18px;">
+                <h4 style="font-weight:900; margin-bottom:12px; color:var(--primary);">الشريحة الثالثة:</h4>
+                <div class="form-group">
+                  <label class="form-label">العنوان الرئيسي:</label>
+                  <input type="text" id="cmsSlide3Title" class="form-input">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">الوصف الترويجي:</label>
+                  <textarea id="cmsSlide3Desc" rows="2" class="form-textarea"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label">رابط أو مسار الصورة:</label>
+                  <input type="text" id="cmsSlide3Img" class="form-input">
+                  <input type="file" accept="image/*" onchange="handleFileToInput(this, 'cmsSlide3Img', 'cmsSlide3Preview')" style="margin-top:6px; font-size:13px;">
+                  <div class="cat-banner-preview-box"><img id="cmsSlide3Preview" src="../images/furn_hero_slide3.jpg"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3 class="card-title"><i class="fa-solid fa-rectangle-ad"></i> بطاقات العروض الجانبية والبانر العريض (Parallax Strip)</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">عنوان البانر البارالاكس العريض:</label>
+                <input type="text" id="cmsStripTitle" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">نص العرض الترويجي للبانر العريض:</label>
+                <input type="text" id="cmsStripDesc" class="form-input">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">صورة خلفية البانر البارالاكس:</label>
+              <input type="text" id="cmsStripImg" class="form-input">
+              <input type="file" accept="image/*" onchange="handleFileToInput(this, 'cmsStripImg', 'cmsStripPreview')" style="margin-top:6px; font-size:13px;">
+              <div class="cat-banner-preview-box" style="height:160px;"><img id="cmsStripPreview" src="../images/furn_parallax_strip.jpg"></div>
+            </div>
+          </div>
+
+          <button onclick="saveHomePageCMS()" class="btn btn-primary" style="padding:15px 36px; font-size:16.5px;">
+            <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات الصفحة الرئيسية
+          </button>
+        </div>
+
+        <!-- 3.2 Product Page Editor -->
+        <div id="cmsProduct" class="cms-sub-pane" style="display:none;">
+          <div class="card">
+            <h3 class="card-title"><i class="fa-solid fa-couch"></i> نصوص وثيقة الضمان الفندقي والشحن لصفحة المنتج</h3>
+            <div class="form-group">
+              <label class="form-label">عنوان وثيقة الضمان:</label>
+              <input type="text" id="cmsProdWarrantyTitle" class="form-input" value="وثيقة الضمان الذهبي لمدة 10 سنوات">
+            </div>
+            <div class="form-group">
+              <label class="form-label">تفاصيل وثيقة الضمان الشاملة:</label>
+              <textarea id="cmsProdWarrantyDesc" rows="4" class="form-textarea"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">تفاصيل سياسة التوصيل والتركيب المنزلي الفندقي:</label>
+              <textarea id="cmsProdDeliveryDesc" rows="4" class="form-textarea"></textarea>
+            </div>
+            <button onclick="saveProductPageCMS()" class="btn btn-primary" style="padding:14px 30px;">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ إعدادات صفحة المنتج
+            </button>
+          </div>
+        </div>
+
+        <!-- 3.3 About Page Editor -->
+        <div id="cmsAbout" class="cms-sub-pane" style="display:none;">
+          <div class="card">
+            <h3 class="card-title"><i class="fa-solid fa-gem"></i> محتوى صفحة من نحن وفلسفة التصميم</h3>
+            <div class="form-group">
+              <label class="form-label">العنوان الرئيسي:</label>
+              <input type="text" id="cmsAboutTitle" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">العنوان الفرعي الترويجي:</label>
+              <input type="text" id="cmsAboutSub" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">قصة ورؤية موبيليار هوم للأثاث:</label>
+              <textarea id="cmsAboutStory" rows="6" class="form-textarea"></textarea>
+            </div>
+            <button onclick="saveAboutPageCMS()" class="btn btn-primary" style="padding:14px 30px;">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ تعديلات صفحة من نحن
+            </button>
+          </div>
+        </div>
+
+        <!-- 3.4 Contact Page Editor -->
+        <div id="cmsContact" class="cms-sub-pane" style="display:none;">
+          <div class="card">
+            <h3 class="card-title"><i class="fa-solid fa-location-dot"></i> بيانات الفروع ومعلومات التواصل</h3>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">عنوان صالة العرض بالرياض:</label>
+                <input type="text" id="cmsContactAddressRiyadh" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">رقم الهاتف الموحد:</label>
+                <input type="text" id="cmsContactPhone" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">رقم الواتساب للطلبات:</label>
+                <input type="text" id="cmsContactWA" class="form-input">
+              </div>
+              <div class="form-group">
+                <label class="form-label">مواعيد عمل المعارض:</label>
+                <input type="text" id="cmsContactHours" class="form-input">
+              </div>
+            </div>
+            <button onclick="saveContactPageCMS()" class="btn btn-primary" style="padding:14px 30px;">
+              <i class="fa-solid fa-floppy-disk"></i> حفظ بيانات التواصل
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 4. ORDERS LOG TAB ================= -->
+      <section id="ordersTab" class="tab-pane" style="display:none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title"><i class="fa-solid fa-receipt"></i> سجل الطلبات المحولة للواتساب</h3>
+              <p class="card-desc">قائمة بكافة الطلبات التي قام العملاء بتجهيزها وإرسالها عبر المتجر.</p>
+            </div>
+            <button onclick="clearOrdersLog()" class="btn btn-secondary">
+              <i class="fa-solid fa-trash"></i> مسح سجل الطلبات
+            </button>
+          </div>
+          <div class="table-container">
+            <table>
+              <thead>
+                <tr>
+                  <th>تاريخ الطلب</th>
+                  <th>القطع المطلوبة</th>
+                  <th>الإجمالي</th>
+                  <th>حالة التحويل</th>
+                </tr>
+              </thead>
+              <tbody id="adminOrdersTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 5. SETTINGS TAB ================= -->
+      <section id="settingsTab" class="tab-pane" style="display:none;">
+        <div class="card">
+          <h3 class="card-title"><i class="fa-solid fa-sliders"></i> إعدادات متجر موبيليار هوم الأساسية</h3>
+          <div class="form-grid" style="margin-top:20px;">
+            <div class="form-group">
+              <label class="form-label">اسم المتجر بالعربية:</label>
+              <input type="text" id="settingStoreName" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">اسم المتجر بالإنجليزية:</label>
+              <input type="text" id="settingStoreNameEn" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">رقم الواتساب الرسمي (بدون أصفار أو +):</label>
+              <input type="text" id="settingStoreWA" class="form-input">
+            </div>
+            <div class="form-group">
+              <label class="form-label">رمز الدخول الإداري الجديد (PIN):</label>
+              <input type="text" id="settingAdminPin" maxlength="6" class="form-input" placeholder="1234">
+            </div>
+          </div>
+          <button onclick="saveStoreSettings()" class="btn btn-primary" style="padding:14px 32px; margin-top:12px;">
+            <i class="fa-solid fa-floppy-disk"></i> حفظ الإعدادات العامة
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= 6. BACKUP & RESTORE TAB ================= -->
+      <section id="backupTab" class="tab-pane" style="display:none;">
+        <div class="card">
+          <h3 class="card-title"><i class="fa-solid fa-database"></i> إدارة النسخ الاحتياطي والبيانات</h3>
+          <p class="card-desc">يمكنك تصدير قاعدة بيانات المتجر بالكامل (منتجات، أسعار، صور، محتوى صفحات) والاحتفاظ بها كنسخة احتياطية أو استعادتها بأي وقت.</p>
+
+          <div style="display:flex; gap:16px; margin-top:24px; flex-wrap:wrap;">
+            <button onclick="exportStoreBackup()" class="btn btn-success" style="padding:14px 28px;">
+              <i class="fa-solid fa-download"></i> تصدير نسخة احتياطية (JSON)
+            </button>
+            <label class="btn btn-secondary" style="padding:14px 28px; cursor:pointer;">
+              <i class="fa-solid fa-upload"></i> استيراد نسخة احتياطية
+              <input type="file" accept=".json" onchange="importStoreBackup(this)" style="display:none;">
+            </label>
+            <button onclick="resetStoreToDefault()" class="btn btn-danger" style="padding:14px 28px;">
+              <i class="fa-solid fa-rotate-left"></i> إعادة التعيين للبيانات الافتراضية
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================= PRODUCT MODAL (ADD / EDIT) ================= -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="productModalTitle" style="font-size:20px; font-weight:900; color:var(--text-main);"><i class="fa-solid fa-plus-circle" style="color:var(--primary);"></i> إضافة قطعة أثاث جديدة</h3>
+        <button onclick="closeProductModal()" style="background:none; border:none; font-size:22px; cursor:pointer; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="handleSaveProduct(event)">
+        <div class="modal-body">
+          <input type="hidden" id="modalProdId">
+
+          <div class="form-group">
+            <label class="form-label">اسم وعنوان قطعة الأثاث: *</label>
+            <input type="text" id="modalProdName" class="form-input" placeholder="مثال: كنب زاوية مودرن مخملي عاجي" required>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">القسم الرئيسي: *</label>
+              <select id="modalProdCat" class="form-select" required></select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">الشارة أو البادج الترويجي:</label>
+              <input type="text" id="modalProdBadge" class="form-input" placeholder="الأكثر طلباً، خصم 20%، جديد">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">السعر الحالي (ر.س): *</label>
+              <input type="number" id="modalProdPrice" class="form-input" required min="1">
+            </div>
+            <div class="form-group">
+              <label class="form-label">السعر القديم قبل الخصم (ر.س):</label>
+              <input type="number" id="modalProdOldPrice" class="form-input" min="0">
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">نوع الخامة والأخشاب:</label>
+              <input type="text" id="modalProdMaterial" class="form-input" placeholder="كتان إسكندنافي مع خشب زان">
+            </div>
+            <div class="form-group">
+              <label class="form-label">المقاسات والأبعاد الهندسية:</label>
+              <input type="text" id="modalProdDimensions" class="form-input" placeholder="320سم × 210سم × 85سم">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">صورة قطعة الأثاث: *</label>
+            <input type="text" id="modalProdImg" class="form-input" placeholder="images/furn_prod_sofa.jpg أو رابط مباشر" required>
+            <div style="margin-top:8px; display:flex; align-items:center; gap:12px;">
+              <label class="btn btn-secondary" style="padding:8px 18px; font-size:13.5px; cursor:pointer;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة من جهازك
+                <input type="file" accept="image/*" onchange="handleFileToInput(this, 'modalProdImg', 'modalProdImgPreview')" style="display:none;">
+              </label>
+              <span style="font-size:13px; color:var(--text-muted);">يدعم JPG, PNG, WEBP</span>
+            </div>
+            <div class="cat-banner-preview-box" style="height:150px; margin-top:10px;">
+              <img id="modalProdImgPreview" src="../images/furn_prod_sofa.jpg" alt="معاينة الصورة">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">المواصفات الفنية التفصيلية (افصل بين كل ميزة بفاصلة):</label>
+            <input type="text" id="modalProdSpecs" class="form-input" placeholder="خشب زان أحمر, قماش معالج ضد البقع, نوابض جيبية منفصلة">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">الوصف التفصيلي للقطعة:</label>
+            <textarea id="modalProdDesc" rows="3" class="form-textarea" placeholder="وصف القطعة ومميزات الراحة والتصميم..."></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="closeProductModal()" class="btn btn-secondary">إلغاء</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> حفظ قطعة الأثاث</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= CATEGORY BANNER MODAL ================= -->
+  <div class="modal-overlay" id="categoryModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="categoryModalTitle" style="font-size:20px; font-weight:900; color:var(--text-main);"><i class="fa-solid fa-pen-to-square" style="color:var(--primary);"></i> تعديل بانر القسم العريض</h3>
+        <button onclick="closeCategoryModal()" style="background:none; border:none; font-size:22px; cursor:pointer; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="handleSaveCategory(event)">
+        <div class="modal-body">
+          <input type="hidden" id="modalCatId">
+          <div class="form-group">
+            <label class="form-label">اسم القسم:</label>
+            <input type="text" id="modalCatName" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">العنوان السينمائي أعلى الصفحة:</label>
+            <input type="text" id="modalCatTitle" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">الوصف الترويجي في البانر:</label>
+            <textarea id="modalCatDesc" rows="3" class="form-textarea" required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">صورة البانر العريضة (Hero Wide Banner):</label>
+            <input type="text" id="modalCatBanner" class="form-input" required>
+            <div style="margin-top:8px;">
+              <label class="btn btn-secondary" style="padding:8px 18px; font-size:13.5px; cursor:pointer;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> رفع صورة بانر عريضة من جهازك
+                <input type="file" accept="image/*" onchange="handleFileToInput(this, 'modalCatBanner', 'modalCatBannerPreview')" style="display:none;">
+              </label>
+            </div>
+            <div class="cat-banner-preview-box" style="height:140px; margin-top:10px;">
+              <img id="modalCatBannerPreview" src="" alt="معاينة البانر">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" onclick="closeCategoryModal()" class="btn btn-secondary">إلغاء</button>
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-check"></i> حفظ وتحديث البانر</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-box" id="adminToast">
+    <i class="fa-solid fa-circle-check" style="color:var(--success); font-size:20px;"></i>
+    <span id="adminToastMsg">تم الحفظ بنجاح!</span>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>كتالوج الأثاث والمتجر الشامل | موبيليار هوم للأثاث</title>
+    <meta name="description" content="تصفح كافة منتجات متجر موبيليار هوم للأثاث المنزلي: كنب، غرف نوم، طاولات سفرة، كراسي استرخاء، ووحدات إضاءة بأسعار مميزة وضمان 10 سنوات.">
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 1. TOP ANNOUNCEMENT BAR -->
+    <div class="furn-topbar">
+        <div class="container">
+            <div class="furn-topbar-inner">
+                <div class="furn-topbar-text">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>عروض موبيليار الكبرى للأثاث المنزلي: شحن وتركيب مجاني لكافة مدن المملكة + ضمان 10 سنوات على الهياكل الخشبية!</span>
+                </div>
+                <div class="furn-top-links">
+                    <a href="contact.html"><i class="fa-solid fa-phone"></i> خدمة العملاء: 800-123-4567</a>
+                    <a href="admin/index.html"><i class="fa-solid fa-lock"></i> لوحة الإدارة</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MAIN HEADER -->
+    <header class="site-header" style="background:#ffffff; border-bottom:1px solid #ECE7DF; position:sticky; top:0; z-index:999; box-shadow:0 4px 20px rgba(0,0,0,0.03);">
+        <div class="container">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; gap:24px;">
+                <!-- Logo -->
+                <a href="index.html" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit;">
+                    <div style="width:46px; height:46px; background:#B87342; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px;">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <div>
+                        <span style="font-size:21px; font-weight:900; color:#1F2421; display:block; line-height:1.2;">موبيليار هوم</span>
+                        <span style="font-size:10.5px; font-weight:800; color:#8E9893; letter-spacing:1px; display:block;">MOBILIAR HOME FURNITURE</span>
+                    </div>
+                </a>
+
+                <!-- Search Bar -->
+                <div style="flex:1; max-width:540px; position:relative;">
+                    <div style="display:flex; align-items:center; width:100%;">
+                        <input type="text" id="shopSearchInput" oninput="filterShopProducts()" placeholder="ابحث في الكتالوج بالاسم، النوع أو الخامة..." style="width:100%; padding:12px 18px 12px 50px; border-radius:50px; border:1.5px solid #ECE7DF; background:#FBF9F6; font-family:inherit; font-size:13.5px; outline:none; transition:all 0.25s;">
+                        <button type="button" style="position:absolute; left:6px; width:38px; height:38px; background:#B87342; border:none; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center;">
+                            <i class="fa-solid fa-magnifying-glass" style="font-size:14px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <a href="shop.html" style="position:relative; width:44px; height:44px; border-radius:12px; background:#FBF9F6; border:1px solid #ECE7DF; display:flex; align-items:center; justify-content:center; color:#2C302E; text-decoration:none;" title="المفضلة">
+                        <i class="fa-regular fa-heart" style="font-size:18px;"></i>
+                        <span class="wishlist-count" id="wishlistCountBadge" style="position:absolute; top:-6px; right:-6px; background:#B87342; color:#fff; font-size:11px; font-weight:800; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center;">0</span>
+                    </a>
+                    <button onclick="toggleFurnCartDrawer()" style="display:flex; align-items:center; gap:10px; padding:10px 18px; border-radius:12px; background:#2C302E; color:#fff; border:none; cursor:pointer; font-family:inherit; font-weight:800; font-size:13.5px; box-shadow:0 4px 14px rgba(44,48,46,0.18);">
+                        <i class="fa-solid fa-bag-shopping" style="color:#D4A373; font-size:16px;"></i>
+                        <span>سلة الأثاث</span>
+                        <span class="cart-count" id="cartCountBadge" style="background:#B87342; color:#fff; font-size:11px; padding:2px 7px; border-radius:50px; margin-right:4px;">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation Links Bar -->
+            <nav style="display:flex; align-items:center; justify-content:space-between; border-top:1px solid #F4EBE2; padding:10px 0;">
+                <ul style="display:flex; align-items:center; gap:26px; list-style:none; margin:0; padding:0; flex-wrap:wrap;">
+                    <li><a href="index.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">الرئيسية</a></li>
+                    <li><a href="shop.html" style="font-size:14px; font-weight:800; color:#B87342; text-decoration:none;">المتجر والكتالوج</a></li>
+                    <li><a href="category?cat=living" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">أثاث غرف المعيشة</a></li>
+                    <li><a href="category?cat=bedroom" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">غرف النوم والأسرّة</a></li>
+                    <li><a href="category?cat=dining" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">طاولات السفرة</a></li>
+                    <li><a href="category?cat=recliners" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">كراسي الاسترخاء</a></li>
+                    <li><a href="category?cat=decor" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">الإضاءة والديكور</a></li>
+                    <li><a href="about.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">من نحن</a></li>
+                    <li><a href="contact.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 3. PAGE HERO BANNER -->
+    <section class="furn-cat-banner-section">
+        <div class="container">
+            <div class="furn-cat-banner-card">
+                <img class="furn-cat-banner-bg" src="images/cat_banner_all.jpg" alt="كتالوج موبيليار هوم للأثاث">
+                <div class="furn-cat-banner-overlay"></div>
+                <div class="furn-cat-banner-content">
+                    <div class="furn-cat-breadcrumb">
+                        <a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a>
+                        <i class="fa-solid fa-chevron-left" style="font-size:11px;"></i>
+                        <span>كتالوج الأثاث الشامل</span>
+                    </div>
+                    <h1 class="furn-cat-banner-title">كتالوج الأثاث المنزلي والتصاميم الراقية</h1>
+                    <p class="furn-cat-banner-desc">استكشف كافة تشكيلات الأثاث الإسكندنافي والكلاسيكي لغرف المعيشة والنوم والسفرة والإضاءة مع ضمان 10 سنوات وتوصيل وتركيب مجاني.</p>
+                    <div class="furn-cat-banner-stats">
+                        <span><i class="fa-solid fa-boxes-stacked"></i> 12 تصميماً معتمداً</span>
+                        <span><i class="fa-solid fa-shield-halved"></i> ضمان 10 سنوات شامل</span>
+                        <span><i class="fa-solid fa-truck-fast"></i> شحن وتركيب مجاني</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Category Switcher Chips -->
+            <div class="furn-cat-chips-bar">
+                <a href="shop.html" class="furn-cat-chip active">
+                    <i class="fa-solid fa-couch"></i>
+                    <span>كافة التشكيلات (12)</span>
+                </a>
+                <a href="category?cat=living" class="furn-cat-chip">
+                    <i class="fa-solid fa-couch"></i>
+                    <span>غرف المعيشة</span>
+                </a>
+                <a href="category?cat=bedroom" class="furn-cat-chip">
+                    <i class="fa-solid fa-bed"></i>
+                    <span>غرف النوم والأسرّة</span>
+                </a>
+                <a href="category?cat=dining" class="furn-cat-chip">
+                    <i class="fa-solid fa-utensils"></i>
+                    <span>طاولات الطعام</span>
+                </a>
+                <a href="category?cat=recliners" class="furn-cat-chip">
+                    <i class="fa-solid fa-chair"></i>
+                    <span>كراسي الاسترخاء</span>
+                </a>
+                <a href="category?cat=decor" class="furn-cat-chip">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <span>الإضاءة والتحف</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MAIN CATALOG GRID (4 COLUMNS RESPONSIVE) -->
+    <section style="padding:40px 0 70px; background:#ffffff;">
+        <div class="container">
+            <!-- Controls Bar -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:14px; background:#FBF9F6; padding:14px 22px; border-radius:14px; border:1px solid #ECE7DF;">
+                <div style="font-size:15px; font-weight:800; color:#1F2421; display:flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-layer-group" style="color:#B87342;"></i>
+                    <span id="shopCountStatus">تم العثور على 12 قطعة أثاث متوفرة</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="font-size:13.5px; color:#66706B; font-weight:700;">ترتيب حسب:</span>
+                    <select id="shopSortSelect" onchange="sortShopProducts()" style="padding:8px 14px; border:1.5px solid #ECE7DF; border-radius:10px; font-family:inherit; font-size:13px; font-weight:700; outline:none; background:#fff; cursor:pointer;">
+                        <option value="featured">الأكثر طلباً وتميزاً</option>
+                        <option value="price-asc">السعر: من الأقل للأعلى</option>
+                        <option value="price-desc">السعر: من الأعلى للأقل</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Products Grid: 4 Columns on Desktop, Zero Whitespace -->
+            <div class="furn-products-grid" id="shopProductsGrid">
+
+        <div class="product-card furn-card" data-category="living" data-price="4250" data-id="1">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">الأكثر طلباً</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(1)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=1" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_sofa.jpg" alt="كنب زاوية مودرن مخملي عاجي" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">غرف المعيشة</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=1" style="color:inherit; text-decoration:none;">كنب زاوية مودرن مخملي عاجي</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">خشب زان أحمر مجفف</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">قماش كتان معالج ضد البقع</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">4,250 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">5,200 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(1, 'كنب زاوية مودرن مخملي عاجي', 4250, 'images/furn_prod_sofa.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=1" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="recliners" data-price="1290" data-id="2">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">جديد</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(2)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=2" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_chair.jpg" alt="كرسي قراءة نورديك بقماش البوكليه" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">كراسي الاسترخاء والمفردات</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=2" style="color:inherit; text-decoration:none;">كرسي قراءة نورديك بقماش البوكليه</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">قماش بوكليه تيدي فاخر</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">هيكل داخلي معدني مدعم</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">1,290 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">1,650 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(2, 'كرسي قراءة نورديك بقماش البوكليه', 1290, 'images/furn_prod_chair.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=2" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="bedroom" data-price="3800" data-id="3">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">خصم 20%</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(3)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=3" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_bed.jpg" alt="سرير كينج من خشب البلوط الطبيعي" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">غرف النوم والأسرّة</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=3" style="color:inherit; text-decoration:none;">سرير كينج من خشب البلوط الطبيعي</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">خشب بلوط أمريكي صلب 100%</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">ألواح خشبية داعمة مانعة للصوت</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">3,800 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">4,600 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(3, 'سرير كينج من خشب البلوط الطبيعي', 3800, 'images/furn_prod_bed.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=3" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="dining" data-price="3450" data-id="4">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">تصميم حصري</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(4)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=4" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_table.jpg" alt="طاولة طعام خشب جوز لـ 8 أشخاص" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">طاولات وكراسي السفرة</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=4" style="color:inherit; text-decoration:none;">طاولة طعام خشب جوز لـ 8 أشخاص</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">خشب جوز طبيعي معالج بالزيوت النباتية</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">قاعدة ستيل صلب بطلاء كهرستاتيكي</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">3,450 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">4,100 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(4, 'طاولة طعام خشب جوز لـ 8 أشخاص', 3450, 'images/furn_prod_table.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=4" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="living" data-price="1450" data-id="5">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">الأكثر أناقة</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(5)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=5" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_coffee.jpg" alt="طاولة قهوة رخامية دائرية بتفاصيل نحاس" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">غرف المعيشة</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=5" style="color:inherit; text-decoration:none;">طاولة قهوة رخامية دائرية بتفاصيل نحاس</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">رخام طبيعي مصقول ضد السوائل</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">قاعدة ستانلس ستيل مطلي PVD ذهبي</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">1,450 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">1,800 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(5, 'طاولة قهوة رخامية دائرية بتفاصيل نحاس', 1450, 'images/furn_prod_coffee.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=5" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="bedroom" data-price="1100" data-id="6">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">طقم قطعتين</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(6)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=6" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_commode.jpg" alt="طقم كمودينات سرير مزدوجة خشب زان" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">غرف النوم والأسرّة</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=6" style="color:inherit; text-decoration:none;">طقم كمودينات سرير مزدوجة خشب زان</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">طقم يشمل قطعتين يمين ويسار</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">أدراج بنظام سحب سوفت كلوز</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">1,100 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">1,400 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(6, 'طقم كمودينات سرير مزدوجة خشب زان', 1100, 'images/furn_prod_commode.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=6" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="dining" data-price="1950" data-id="7">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">عرض طقم 4 قطع</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(7)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=7" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_dining_chairs.jpg" alt="طقم 4 كراسي طعام مخملية مريحة" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">طاولات وكراسي السفرة</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=7" style="color:inherit; text-decoration:none;">طقم 4 كراسي طعام مخملية مريحة</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">طقم من 4 كراسي متطابقة</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">قماش مخملي ناعم الملمس وسهل المسح</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">1,950 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">2,400 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(7, 'طقم 4 كراسي طعام مخملية مريحة', 1950, 'images/furn_prod_dining_chairs.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=7" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="decor" data-price="680" data-id="8">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">إضاءة دافئة</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(8)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=8" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_lamp.jpg" alt="مصباح أرضي آرت ديكو ونحاس مطفي" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">وحدات الإضاءة والديكور</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=8" style="color:inherit; text-decoration:none;">مصباح أرضي آرت ديكو ونحاس مطفي</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">قاعدة رخام طبيعي مانعة للانقلاب</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">هيكل نحاسي معالج ضد الأكسدة</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">680 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">850 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(8, 'مصباح أرضي آرت ديكو ونحاس مطفي', 680, 'images/furn_prod_lamp.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=8" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="recliners" data-price="2890" data-id="9">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">جلد طبيعي فاخر</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(9)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=9" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_recliner.jpg" alt="كرسي استرخاء شيزلونج جلد طبيعي بني" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">كراسي الاسترخاء والمفردات</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=9" style="color:inherit; text-decoration:none;">كرسي استرخاء شيزلونج جلد طبيعي بني</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">جلد بقري طبيعي 100% Top Grain</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">هيكل منحني انسيابي يريح العمود الفقري</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">2,890 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">3,400 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(9, 'كرسي استرخاء شيزلونج جلد طبيعي بني', 2890, 'images/furn_prod_recliner.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=9" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="bedroom" data-price="5600" data-id="10">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">سعة تخزين كبرى</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(10)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=10" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_wardrobe.jpg" alt="دولاب ملابس ماستر خشب زان وأبواب مرايا" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">غرف النوم والأسرّة</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=10" style="color:inherit; text-decoration:none;">دولاب ملابس ماستر خشب زان وأبواب مرايا</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">تقسيم ذكي داخلي مع إضاءة LED أوتوماتيكية</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">أبواب سحاب سوفت كلوز ومرايا بلجيكية</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">5,600 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">6,800 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(10, 'دولاب ملابس ماستر خشب زان وأبواب مرايا', 5600, 'images/furn_prod_wardrobe.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=10" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="living" data-price="2650" data-id="11">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">متعدد الاستخدام</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(11)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=11" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_credenza.jpg" alt="بوفيه ووحدة تخزين صالة خشب سنديان مودرن" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">غرف المعيشة</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=11" style="color:inherit; text-decoration:none;">بوفيه ووحدة تخزين صالة خشب سنديان مودرن</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">4 أبواب مع أرفف داخلية قابلة لتعديل الارتفاع</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">أبواب بنقوش هندسية ثلاثية الأبعاد خشبية</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">2,650 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">3,200 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(11, 'بوفيه ووحدة تخزين صالة خشب سنديان مودرن', 2650, 'images/furn_prod_credenza.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=11" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+        <div class="product-card furn-card" data-category="decor" data-price="890" data-id="12">
+            <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">إضاءة 3 درجات</span>
+            <button class="wishlist-btn" onclick="toggleFurnWishlist(12)" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; transition:all 0.2s;" title="إضافة للرغبات">
+                <i class="fa-regular fa-heart"></i>
+            </button>
+            <a href="product?id=12" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                <img src="images/furn_prod_pendant.jpg" alt="ثريا سقف معلقة نورديك بتصميم حلقي ذهبي" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+            </a>
+            <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                <div>
+                    <span class="product-cat-name" style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">وحدات الإضاءة والديكور</span>
+                    <h3 class="product-title" style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                        <a href="product?id=12" style="color:inherit; text-decoration:none;">ثريا سقف معلقة نورديك بتصميم حلقي ذهبي</a>
+                    </h3>
+                    <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                        <span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">تحكم عن بعد بريموت كونترول</span><span class="spec-chip" style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">إضاءة دافئة وباردة وطبيعية (3000K-6000K)</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="product-price-box" style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                        <span class="price-current" style="font-size:17px; font-weight:900; color:#1F2421;">890 ر.س</span>
+                        <span class="price-old" style="font-size:13px; color:#8E9893; text-decoration:line-through;">1,150 ر.س</span>
+                    </div>
+                    <div class="furn-card-actions">
+                        <button class="furn-btn-add" onclick="addFurnToCart(12, 'ثريا سقف معلقة نورديك بتصميم حلقي ذهبي', 890, 'images/furn_prod_pendant.jpg')">
+                            <i class="fa-solid fa-cart-plus"></i>
+                            <span>إضافة للسلة</span>
+                        </button>
+                        <a href="product?id=12" class="furn-btn-view">
+                            <i class="fa-regular fa-eye"></i>
+                            <span>عرض المنتج</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SITE FOOTER -->
+    <footer style="background:#2C302E; color:#F4EBE2; padding:60px 0 30px; border-top:3px solid #B87342;">
+        <div class="container">
+            <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; font-size:13px; color:#8E9893;">
+                <div>© 2026 متجر موبيليار هوم للأثاث (Mobiliar Home). كافة الحقوق محفوظة ومسجلة رسمياً.</div>
+                <div style="display:flex; gap:12px; font-size:20px; color:#C4BBB0;">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SLIDE-OUT CART DRAWER -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeFurnCartDrawer()" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9998; opacity:0; pointer-events:none; transition:opacity 0.3s;"></div>
+    <div class="cart-drawer" id="cartDrawer" style="position:fixed; top:0; left:0; width:100%; max-width:420px; height:100%; background:#ffffff; z-index:9999; box-shadow:4px 0 25px rgba(0,0,0,0.15); display:flex; flex-direction:column; transform:translateX(-100%); transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);">
+        <div style="padding:20px 24px; border-bottom:1.5px solid #ECE7DF; display:flex; align-items:center; justify-content:space-between; background:#FBF9F6;">
+            <h3 style="font-size:18px; font-weight:900; color:#1F2421; margin:0; display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-couch" style="color:#B87342;"></i>
+                <span>سلة مشتريات الأثاث</span>
+                <span id="furnCartHeaderCount" style="font-size:13px; background:#B87342; color:#fff; padding:2px 8px; border-radius:50px;">0</span>
+            </h3>
+            <button onclick="closeFurnCartDrawer()" style="background:none; border:none; font-size:20px; color:#66706B; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="cartDrawerItems" style="flex:1; overflow-y:auto; padding:10px 24px;"></div>
+        <div style="padding:20px 24px; border-top:1.5px solid #ECE7DF; background:#FBF9F6;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <span style="font-size:15px; font-weight:800; color:#66706B;">الإجمالي المقدر:</span>
+                <span id="cartTotalPrice" style="font-size:22px; font-weight:900; color:#B87342;">0 ر.س</span>
+            </div>
+            <button onclick="proceedFurnCheckout()" style="width:100%; padding:14px; background:#25d366; color:#fff; border:none; border-radius:12px; font-weight:800; font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 6px 18px rgba(37,211,102,0.35);">
+                <i class="fa-brands fa-whatsapp" style="font-size:20px;"></i>
+                <span>إتمام الطلب وتأكيد التوصيل عبر واتساب</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201027093535" target="_blank" class="furn-floating-whatsapp" title="تواصل عبر واتساب">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/store.js"></script>
+    <script>
+    function filterShopProducts() {
+        var term = (document.getElementById('shopSearchInput').value || '').toLowerCase().trim();
+        var cards = document.querySelectorAll('#shopProductsGrid .product-card');
+        var count = 0;
+        for (var i = 0; i < cards.length; i++) {
+            var text = cards[i].innerText.toLowerCase();
+            if (!term || text.indexOf(term) !== -1) {
+                cards[i].style.display = 'flex';
+                count++;
+            } else {
+                cards[i].style.display = 'none';
+            }
+        }
+        document.getElementById('shopCountStatus').textContent = 'تم العثور على ' + count + ' قطعة أثاث مطابقة';
+    }
+
+    function sortShopProducts() {
+        var grid = document.getElementById('shopProductsGrid');
+        var cards = Array.from(grid.getElementsByClassName('product-card'));
+        var val = document.getElementById('shopSortSelect').value;
+
+        cards.sort(function(a, b) {
+            var priceA = Number(a.getAttribute('data-price') || 0);
+            var priceB = Number(b.getAttribute('data-price') || 0);
+            var idA = Number(a.getAttribute('data-id') || 0);
+            var idB = Number(b.getAttribute('data-id') || 0);
+
+            if (val === 'price-asc') return priceA - priceB;
+            if (val === 'price-desc') return priceB - priceA;
+            return idA - idB;
+        });
+
+        cards.forEach(function(c) { grid.appendChild(c); });
+    }
+
+    // Read URL Search Param if present
+    document.addEventListener('DOMContentLoaded', function() {
+        var urlParams = new URLSearchParams(window.location.search);
+        var q = urlParams.get('search');
+        if (q) {
+            document.getElementById('shopSearchInput').value = q;
+            filterShopProducts();
+        }
+    });
+    </script>
+</body>
+</html>

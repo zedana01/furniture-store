@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">تفاصيل قطعة الأثاث | متجر موبيليار هوم</title>
+    <meta name="description" content="تفاصيل القطعة، الخامات، الأبعاد، الضمان لمدة 10 سنوات، وإمكانية الطلب المباشر عبر واتساب وإضافة للسلة.">
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .product-page-wrapper {
+            max-width: 1240px;
+            margin: 40px auto 70px;
+            padding: 0 20px;
+        }
+        .furn-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95rem;
+            color: #7B847F;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .furn-breadcrumb a { color: #B87342; text-decoration: none; font-weight: 700; }
+        .furn-breadcrumb a:hover { text-decoration: underline; }
+        
+        .product-detail-card {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 50px;
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 45px;
+            border: 1px solid #ECE7DF;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+        }
+        @media (max-width: 900px) {
+            .product-detail-card { grid-template-columns: 1fr; padding: 25px; gap: 30px; }
+        }
+        
+        .product-gallery-box {
+            position: relative;
+        }
+        .product-main-view {
+            position: relative;
+            background: #FBF9F6;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #ECE7DF;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-main-view img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .product-main-view:hover img {
+            transform: scale(1.06);
+        }
+        .product-floating-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #B87342;
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 13.5px;
+            font-weight: 800;
+            box-shadow: 0 4px 14px rgba(184,115,66,0.3);
+            z-index: 2;
+        }
+        
+        .product-info-col h1 {
+            font-size: 2.1rem;
+            font-weight: 900;
+            color: #1F2421;
+            line-height: 1.35;
+            margin: 10px 0 16px;
+        }
+        .product-meta-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+        .furn-stock-badge {
+            background: #ECFDF5;
+            color: #065F46;
+            border: 1px solid #A7F3D0;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .furn-warranty-badge {
+            background: #FFFBEB;
+            color: #B45309;
+            border: 1px solid #FDE68A;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .product-price-panel {
+            background: #FBF9F6;
+            border: 1.5px solid #F4EBE2;
+            border-radius: 18px;
+            padding: 22px 26px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .current-price-huge {
+            font-size: 2.3rem;
+            font-weight: 900;
+            color: #B87342;
+        }
+        .old-price-huge {
+            font-size: 1.25rem;
+            color: #8E9893;
+            text-decoration: line-through;
+            margin-right: 12px;
+        }
+        
+        .furn-specs-pill-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+        .spec-pill {
+            background: #ffffff;
+            border: 1px solid #ECE7DF;
+            border-radius: 14px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .spec-pill span:first-child {
+            font-size: 0.82rem;
+            color: #7B847F;
+            font-weight: 700;
+        }
+        .spec-pill span:last-child {
+            font-size: 0.95rem;
+            color: #1F2421;
+            font-weight: 800;
+        }
+        
+        .qty-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 26px;
+        }
+        .qty-box {
+            display: inline-flex;
+            align-items: center;
+            border: 1.5px solid #D2C7B8;
+            border-radius: 14px;
+            background: #FBF9F6;
+            overflow: hidden;
+        }
+        .qty-btn {
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: transparent;
+            font-size: 1.3rem;
+            font-weight: 800;
+            cursor: pointer;
+            color: #2C302E;
+            transition: background 0.2s;
+        }
+        .qty-btn:hover { background: #ECE7DF; }
+        .qty-num {
+            min-width: 40px;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #1F2421;
+        }
+        
+        .action-btns-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 600px) {
+            .action-btns-row { grid-template-columns: 1fr; }
+            .furn-specs-pill-grid { grid-template-columns: 1fr; }
+        }
+        
+        .btn-add-furn-cart {
+            background: #B87342;
+            color: #fff;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s;
+            box-shadow: 0 6px 20px rgba(184,115,66,0.3);
+            font-family: inherit;
+        }
+        .btn-add-furn-cart:hover {
+            background: #9E5D30;
+            transform: translateY(-2px);
+        }
+        
+        .btn-wa-furn-order {
+            background: #25D366;
+            color: #fff;
+            border: none;
+            padding: 16px 24px;
+            border-radius: 14px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.25s;
+            box-shadow: 0 6px 20px rgba(37,211,102,0.3);
+            text-decoration: none;
+            font-family: inherit;
+        }
+        .btn-wa-furn-order:hover {
+            background: #1eb856;
+            transform: translateY(-2px);
+            color: #fff;
+        }
+        
+        .tabs-card {
+            background: #ffffff;
+            border-radius: 24px;
+            border: 1px solid #ECE7DF;
+            margin-top: 50px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+        }
+        .tabs-nav {
+            display: flex;
+            gap: 14px;
+            border-bottom: 2px solid #F4EBE2;
+            padding-bottom: 16px;
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+        .tab-trigger {
+            background: none;
+            border: none;
+            font-size: 1.05rem;
+            font-weight: 800;
+            color: #7B847F;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-family: inherit;
+        }
+        .tab-trigger.active {
+            color: #B87342;
+            background: #FBF9F6;
+        }
+        
+        .specs-furniture-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .specs-furniture-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #F4EBE2;
+            font-size: 0.98rem;
+        }
+        .specs-furniture-table tr:nth-child(even) { background: #FBF9F6; }
+        .specs-furniture-table td:first-child {
+            font-weight: 800;
+            color: #1F2421;
+            width: 32%;
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- 1. TOP ANNOUNCEMENT BAR -->
+    <div class="furn-topbar">
+        <div class="container">
+            <div class="furn-topbar-inner">
+                <div class="furn-topbar-text">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>عروض موبيليار الكبرى للأثاث المنزلي: شحن وتركيب مجاني لكافة مدن المملكة + ضمان 10 سنوات على الهياكل الخشبية!</span>
+                </div>
+                <div class="furn-top-links">
+                    <a href="contact.html"><i class="fa-solid fa-phone"></i> خدمة العملاء: 01027093535</a>
+                    <a href="admin/index.html"><i class="fa-solid fa-lock"></i> لوحة الإدارة</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MAIN HEADER -->
+    <header class="site-header" style="background:#ffffff; border-bottom:1px solid #ECE7DF; position:sticky; top:0; z-index:999; box-shadow:0 4px 20px rgba(0,0,0,0.03);">
+        <div class="container">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; gap:24px;">
+                <!-- Logo -->
+                <a href="index.html" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit;">
+                    <div style="width:46px; height:46px; background:#B87342; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px;">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <div>
+                        <span style="font-size:21px; font-weight:900; color:#1F2421; display:block; line-height:1.2;">موبيليار هوم</span>
+                        <span style="font-size:10.5px; font-weight:800; color:#8E9893; letter-spacing:1px; display:block;">MOBILIAR HOME FURNITURE</span>
+                    </div>
+                </a>
+
+                <!-- Search Bar -->
+                <div style="flex:1; max-width:540px; position:relative;">
+                    <form action="shop.html" method="GET" style="display:flex; align-items:center; width:100%;">
+                        <input type="text" name="q" placeholder="ابحث عن كنب، غرف نوم، طاولات سفرة، كراسي استرخاء..." style="width:100%; padding:12px 18px 12px 50px; border-radius:50px; border:1.5px solid #ECE7DF; background:#FBF9F6; font-family:inherit; font-size:13.5px; outline:none; transition:all 0.25s;">
+                        <button type="submit" style="position:absolute; left:6px; width:38px; height:38px; background:#B87342; border:none; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer;">
+                            <i class="fa-solid fa-magnifying-glass" style="font-size:14px;"></i>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Header Actions -->
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <a href="shop.html" style="position:relative; width:44px; height:44px; border-radius:12px; background:#FBF9F6; border:1px solid #ECE7DF; display:flex; align-items:center; justify-content:center; color:#2C302E; text-decoration:none;" title="المفضلة">
+                        <i class="fa-regular fa-heart" style="font-size:18px;"></i>
+                        <span class="wishlist-count" id="wishlistCountBadge" style="position:absolute; top:-6px; right:-6px; background:#B87342; color:#fff; font-size:11px; font-weight:800; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center;">0</span>
+                    </a>
+                    <button onclick="toggleFurnCartDrawer()" style="display:flex; align-items:center; gap:10px; padding:10px 18px; border-radius:12px; background:#2C302E; color:#fff; border:none; cursor:pointer; font-family:inherit; font-weight:800; font-size:13.5px; box-shadow:0 4px 14px rgba(44,48,46,0.18);">
+                        <i class="fa-solid fa-bag-shopping" style="color:#D4A373; font-size:16px;"></i>
+                        <span>سلة الأثاث</span>
+                        <span class="cart-count" id="cartCountBadge" style="background:#B87342; color:#fff; font-size:11px; padding:2px 7px; border-radius:50px; margin-right:4px;">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation Links Bar -->
+            <nav style="display:flex; align-items:center; justify-content:space-between; border-top:1px solid #F4EBE2; padding:10px 0;">
+                <ul style="display:flex; align-items:center; gap:26px; list-style:none; margin:0; padding:0; flex-wrap:wrap;">
+                    <li><a href="index.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">الرئيسية</a></li>
+                    <li><a href="shop.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">المتجر والكتالوج</a></li>
+                    <li><a href="category?cat=living" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">أثاث غرف المعيشة</a></li>
+                    <li><a href="category?cat=bedroom" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">غرف النوم والأسرّة</a></li>
+                    <li><a href="category?cat=dining" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">طاولات السفرة</a></li>
+                    <li><a href="category?cat=recliners" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">كراسي الاسترخاء</a></li>
+                    <li><a href="category?cat=decor" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">الإضاءة والديكور</a></li>
+                    <li><a href="about.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">من نحن</a></li>
+                    <li><a href="contact.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- PRODUCT DETAIL CONTENT -->
+    <main class="product-page-wrapper">
+        <!-- Breadcrumb -->
+        <div class="furn-breadcrumb">
+            <a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a>
+            <i class="fa-solid fa-chevron-left" style="font-size:11px;"></i>
+            <a href="shop.html">أقسام الأثاث</a>
+            <i class="fa-solid fa-chevron-left" style="font-size:11px;"></i>
+            <a href="category?cat=living" id="breadcrumbCategory">غرف المعيشة</a>
+            <i class="fa-solid fa-chevron-left" style="font-size:11px;"></i>
+            <span id="breadcrumbTitle" style="color:#1F2421; font-weight:800;">كنب زاوية مودرن مخملي عاجي</span>
+        </div>
+
+        <!-- Product Card -->
+        <div class="product-detail-card">
+            <!-- Gallery Col -->
+            <div class="product-gallery-box">
+                <span class="product-floating-badge" id="prodBadge">الأكثر طلباً</span>
+                <div class="product-main-view">
+                    <img id="prodImage" src="images/furn_prod_sofa.jpg" alt="صورة قطعة الأثاث">
+                </div>
+            </div>
+
+            <!-- Info Col -->
+            <div class="product-info-col">
+                <div class="product-meta-row">
+                    <span class="furn-stock-badge"><i class="fa-solid fa-circle-check"></i> متوفر بالمستودعات - شحن فوري</span>
+                    <span class="furn-warranty-badge"><i class="fa-solid fa-certificate"></i> ضمان 10 سنوات شامل</span>
+                </div>
+
+                <h1 id="prodTitle">كنب زاوية مودرن مخملي عاجي</h1>
+                <p id="prodDesc" style="color:#575F5B; font-size:1rem; line-height:1.8; margin-bottom:24px;">
+                    كنب زاوية فاخر بتصميم نورديك مريح، حشوة فوم عالي الكثافة مع نوابض جيبية منفصلة تعطي أقصى درجات الدعم، وقماش معالج ضد البقع وسهل التنظيف.
+                </p>
+
+                <!-- Pricing -->
+                <div class="product-price-panel">
+                    <div>
+                        <span style="font-size:0.85rem; color:#7B847F; display:block; margin-bottom:4px;">السعر الرسمي مع التوصيل والتركيب:</span>
+                        <span class="current-price-huge" id="prodPrice">4,250 ر.س</span>
+                        <span class="old-price-huge" id="prodOldPrice">5,200 ر.س</span>
+                    </div>
+                    <span style="background:#B87342; color:#fff; padding:6px 14px; border-radius:30px; font-weight:800; font-size:0.85rem;">شامل الضريبة 15%</span>
+                </div>
+
+                <!-- Fast Specs Pills -->
+                <div class="furn-specs-pill-grid">
+                    <div class="spec-pill">
+                        <span>نوع وتفاصيل الخامة:</span>
+                        <span id="pillMaterial">كتان إسكندنافي مع خشب زان</span>
+                    </div>
+                    <div class="spec-pill">
+                        <span>المقاسات والأبعاد:</span>
+                        <span id="pillDimensions">320سم × 210سم × 85سم</span>
+                    </div>
+                </div>
+
+                <!-- Quantity Control -->
+                <div class="qty-row">
+                    <span style="font-weight:800; color:#1F2421;">الكمية المطلوبة:</span>
+                    <div class="qty-box">
+                        <button class="qty-btn" onclick="changeFurnDetailQty(-1)">-</button>
+                        <span class="qty-num" id="furnDetailQty">1</span>
+                        <button class="qty-btn" onclick="changeFurnDetailQty(1)">+</button>
+                    </div>
+                </div>
+
+                <!-- Dual Action Buttons -->
+                <div class="action-btns-row">
+                    <button class="btn-add-furn-cart" onclick="addCurrentProductToFurnCart()">
+                        <i class="fa-solid fa-cart-plus"></i> أضف إلى سلة الأثاث
+                    </button>
+                    <a id="btnDirectFurnWhatsApp" href="#" target="_blank" class="btn-wa-furn-order">
+                        <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> طلب فوري عبر واتساب
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details & Specs Tabs -->
+        <div class="tabs-card">
+            <div class="tabs-nav">
+                <button class="tab-trigger active" onclick="switchFurnTab('specsTabContent', this)">المواصفات الفنية والمقاسات</button>
+                <button class="tab-trigger" onclick="switchFurnTab('warrantyTabContent', this)">الضمان الفندقي والشحن المجاني</button>
+                <button class="tab-trigger" onclick="switchFurnTab('reviewsTabContent', this)">آراء وتجارب العملاء المعتمدين</button>
+            </div>
+
+            <!-- Tab 1: Specs -->
+            <div id="specsTabContent" class="furn-tab-body">
+                <table class="specs-furniture-table" id="specsFurnitureTableBody">
+                    <tr><td>الهيكل الداخلي</td><td>خشب زان أحمر أوروبي مجفف ومقاوم للرطوبة والانحناء</td></tr>
+                    <tr><td>خامة التنجيد</td><td>كتان إسكندنافي معالج بتقنية نانو لمقاومة البقع وسهولة التنظيف</td></tr>
+                    <tr><td>نظام الحشوة والراحة</td><td>طبقات فوم ميموري عالي الكثافة (35 كجم/م³) مدعم بنوابض جيبية منفصلة لمنع الهبوط</td></tr>
+                    <tr><td>الأبعاد الإجمالية</td><td>الطول 320 سم × العرض 210 سم × الارتفاع 85 سم</td></tr>
+                    <tr><td>الأرجل والدعامات</td><td>خشب بلوط طبيعي مصمت مطلي بدهان ورنيش بيئي مقاوم للخدوش</td></tr>
+                    <tr><td>التركيب والشحن</td><td>شحن منزلي مجاني مع فريق نجارين متخصص للتركيب في المكان المفضل</td></tr>
+                </table>
+            </div>
+
+            <!-- Tab 2: Warranty & Delivery -->
+            <div id="warrantyTabContent" class="furn-tab-body" style="display:none; line-height:1.9; color:#3F4743;">
+                <h3 style="font-weight:900; color:#1F2421; margin-bottom:14px;"><i class="fa-solid fa-shield-halved" style="color:#B87342;"></i> وثيقة الضمان الذهبي لمدة 10 سنوات:</h3>
+                <p>تلتزم شركة موبيليار هوم بضمان استثنائي يمتد لـ 10 سنوات يشمل الهياكل الخشبية، الوصلات المعدنية، ونوابض الجيب ضد أي عيوب تصنيع أو هبوط غير طبيعي، مع صيانة دورية مجانية عند الطلب.</p>
+                <h4 style="font-weight:800; color:#1F2421; margin:24px 0 10px;"><i class="fa-solid fa-truck-ramp-box" style="color:#B87342;"></i> التوصيل والتركيب الفندقي:</h4>
+                <p>يصلكم فريقنا الفني المتكامل أينما كنتم في الرياض، جدة، الدمام، وكافة مدن المملكة. نقوم بحمل الأثاث، فكه وتركيبه باحترافية، وإزالة كافة مخلفات التغليف لتستمتعوا بقطعتكم الجديدة فوراً.</p>
+            </div>
+
+            <!-- Tab 3: Reviews -->
+            <div id="reviewsTabContent" class="furn-tab-body" style="display:none;">
+                <div style="display:flex; align-items:center; gap:24px; background:#FBF9F6; padding:24px; border-radius:18px; margin-bottom:26px; border:1px solid #ECE7DF;">
+                    <div style="font-size:3.2rem; font-weight:900; color:#B87342;">5.0</div>
+                    <div>
+                        <div style="color:#F59E0B; font-size:1.3rem; margin-bottom:6px;">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <div style="color:#7B847F; font-size:0.95rem; font-weight:700;">تقييم المشترين المعتمدين والموثقين لدى متجر موبيليار هوم</div>
+                    </div>
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap:16px;">
+                    <div style="background:#fff; border:1px solid #ECE7DF; border-radius:16px; padding:20px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                            <strong style="color:#1F2421; font-size:1.05rem;">عبدالعزيز الشمري - الرياض</strong>
+                            <span style="color:#F59E0B;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                        </div>
+                        <p style="color:#575F5B; margin:0; line-height:1.7;">طلبت الكنب ووصلني خلال يومين، الخامات فخمة جداً وأنظف من الصور بمراحل. فريق التركيب كان محترفاً وسريعاً والراحة أثناء الجلوس ممتازة جداً.</p>
+                    </div>
+                    <div style="background:#fff; border:1px solid #ECE7DF; border-radius:16px; padding:20px;">
+                        <div style="display:flex; justify-content:space-between; margin-bottom:8px;">
+                            <strong style="color:#1F2421; font-size:1.05rem;">نورة القحطاني - جدة</strong>
+                            <span style="color:#F59E0B;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                        </div>
+                        <p style="color:#575F5B; margin:0; line-height:1.7;">القماش سهل التنظيف حقاً، التصميم الإسكندنافي أضاف فخامة غير مسبوقة للصالة واللون العاجي راقٍ جداً مع الإضاءة الدافئة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related Furniture Products -->
+        <div style="margin-top:70px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:30px;">
+                <div>
+                    <span style="color:#B87342; font-weight:800; font-size:14px; display:block; margin-bottom:4px;">تنسيقات موصى بها</span>
+                    <h2 style="font-size:1.8rem; font-weight:900; color:#1F2421; margin:0;">قطع أثاث أخرى متناسقة مع اختيارك</h2>
+                </div>
+                <a href="shop.html" style="color:#B87342; font-weight:800; text-decoration:none; display:flex; align-items:center; gap:8px;">
+                    <span>عرض كامل الكتالوج</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </a>
+            </div>
+
+            <!-- 4 Column Furniture Grid -->
+            <div class="furn-products-grid" id="relatedFurnitureGrid" style="grid-template-columns: repeat(4, 1fr);">
+                <!-- Dynamic Related Products -->
+            </div>
+        </div>
+    </main>
+
+
+    <!-- 8. FOOTER -->
+    <footer style="background:#1F2421; color:#ECE7DF; padding-top:70px; margin-top:80px; border-top:1px solid #333A35;">
+        <div class="container">
+            <div style="display:grid; grid-template-columns:1.4fr 1fr 1fr 1.2fr; gap:40px; padding-bottom:50px; border-bottom:1px solid #2C302E;">
+                <!-- Brand Col -->
+                <div>
+                    <div style="display:flex; align-items:center; gap:12px; margin-bottom:20px;">
+                        <div style="width:44px; height:44px; background:#B87342; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px;">
+                            <i class="fa-solid fa-couch"></i>
+                        </div>
+                        <div>
+                            <span style="font-size:22px; font-weight:900; color:#FFFFFF; display:block;">موبيليار هوم</span>
+                            <span style="font-size:10px; font-weight:800; color:#D4A373; letter-spacing:1px; display:block;">MOBILIAR HOME FURNITURE</span>
+                        </div>
+                    </div>
+                    <p style="font-size:14px; line-height:1.8; color:#A4ACA7; margin-bottom:20px;">
+                        علامتكم الرائدة في عالم الأثاث المنزلي الفاخر. نصمم ونصنع قطعاً تدمج بين البساطة الإسكندنافية المريحة ومتانة الأخشاب الطبيعية بضمان 10 سنوات كاملة.
+                    </p>
+                    <div style="display:flex; gap:12px;">
+                        <a href="https://instagram.com" target="_blank" style="width:38px; height:38px; border-radius:10px; background:#2C302E; display:flex; align-items:center; justify-content:center; color:#ECE7DF; text-decoration:none;"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank" style="width:38px; height:38px; border-radius:10px; background:#2C302E; display:flex; align-items:center; justify-content:center; color:#ECE7DF; text-decoration:none;"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://wa.me/201027093535" target="_blank" style="width:38px; height:38px; border-radius:10px; background:#25D366; display:flex; align-items:center; justify-content:center; color:#fff; text-decoration:none;"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Fast Links -->
+                <div>
+                    <h4 style="font-size:17px; font-weight:800; color:#fff; margin-bottom:22px; position:relative; padding-bottom:10px;">
+                        أقسام الأثاث
+                        <span style="position:absolute; bottom:0; right:0; width:35px; height:3px; background:#B87342; border-radius:2px;"></span>
+                    </h4>
+                    <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px;">
+                        <li><a href="category?cat=living" style="color:#A4ACA7; text-decoration:none; font-size:14px;">أثاث غرف المعيشة</a></li>
+                        <li><a href="category?cat=bedroom" style="color:#A4ACA7; text-decoration:none; font-size:14px;">غرف النوم والأسرة</a></li>
+                        <li><a href="category?cat=dining" style="color:#A4ACA7; text-decoration:none; font-size:14px;">طاولات وكراسي السفرة</a></li>
+                        <li><a href="category?cat=recliners" style="color:#A4ACA7; text-decoration:none; font-size:14px;">كراسي الاسترخاء والمفردات</a></li>
+                        <li><a href="category?cat=decor" style="color:#A4ACA7; text-decoration:none; font-size:14px;">الديكور والإضاءة النورديك</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Care -->
+                <div>
+                    <h4 style="font-size:17px; font-weight:800; color:#fff; margin-bottom:22px; position:relative; padding-bottom:10px;">
+                        خدمة العملاء
+                        <span style="position:absolute; bottom:0; right:0; width:35px; height:3px; background:#B87342; border-radius:2px;"></span>
+                    </h4>
+                    <ul style="list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:12px;">
+                        <li><a href="about.html" style="color:#A4ACA7; text-decoration:none; font-size:14px;">قصتنا والحرفية</a></li>
+                        <li><a href="contact.html" style="color:#A4ACA7; text-decoration:none; font-size:14px;">الفروع وصالات العرض</a></li>
+                        <li><a href="shop.html" style="color:#A4ACA7; text-decoration:none; font-size:14px;">سياسة الشحن والتركيب</a></li>
+                        <li><a href="admin/index.html" style="color:#A4ACA7; text-decoration:none; font-size:14px;"><i class="fa-solid fa-lock"></i> لوحة تحكم المتجر</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact & Showroom -->
+                <div>
+                    <h4 style="font-size:17px; font-weight:800; color:#fff; margin-bottom:22px; position:relative; padding-bottom:10px;">
+                        المقر وصالات العرض
+                        <span style="position:absolute; bottom:0; right:0; width:35px; height:3px; background:#B87342; border-radius:2px;"></span>
+                    </h4>
+                    <div style="display:flex; flex-direction:column; gap:14px; font-size:14px; color:#A4ACA7;">
+                        <div style="display:flex; gap:12px;">
+                            <i class="fa-solid fa-location-dot" style="color:#D4A373; font-size:18px; margin-top:2px;"></i>
+                            <span>طريق الملك فهد، حي العليا - الرياض | صالة عرض جدة شارع التحلية</span>
+                        </div>
+                        <div style="display:flex; gap:12px;">
+                            <i class="fa-solid fa-phone" style="color:#D4A373; font-size:16px; margin-top:2px;"></i>
+                            <span>الهاتف الموحد: 01027093535</span>
+                        </div>
+                        <div style="display:flex; gap:12px;">
+                            <i class="fa-brands fa-whatsapp" style="color:#25D366; font-size:18px; margin-top:2px;"></i>
+                            <a href="https://wa.me/201027093535" target="_blank" style="color:#fff; font-weight:700; text-decoration:none;">طلب واتساب: +20 102 709 3535</a>
+                        </div>
+                        <div style="display:flex; gap:12px;">
+                            <i class="fa-solid fa-truck-fast" style="color:#D4A373; font-size:16px; margin-top:2px;"></i>
+                            <span>التوصيل والتركيب: شحن منزلي مجاني واحترافي</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Copyright -->
+            <div style="padding:24px 0; display:flex; justify-content:space-between; align-items:center; font-size:13.5px; color:#7B847F; flex-wrap:wrap; gap:16px;">
+                <p style="margin:0;">© 2026 متجر موبيليار هوم للأثاث المنزلي (Mobiliar Home Furniture) - جميع الحقوق محفوظة.</p>
+                <div style="display:flex; gap:16px; align-items:center;">
+                    <span>الدفع الآمن عند الاستلام والتحويل البنكي</span>
+                    <i class="fa-brands fa-cc-visa" style="font-size:20px; color:#A4ACA7;"></i>
+                    <i class="fa-brands fa-cc-mastercard" style="font-size:20px; color:#A4ACA7;"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SLIDE-OUT CART DRAWER -->
+    <div class="furn-drawer-overlay" id="furnCartOverlay" onclick="toggleFurnCartDrawer()"></div>
+    <div class="furn-cart-drawer" id="furnCartDrawer">
+        <div class="furn-drawer-header">
+            <h3><i class="fa-solid fa-bag-shopping" style="color:#B87342;"></i> سلة الأثاث (<span id="cartDrawerCount">0</span>)</h3>
+            <button class="furn-drawer-close" onclick="toggleFurnCartDrawer()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="furn-drawer-body" id="cartDrawerItems"></div>
+        <div class="furn-drawer-footer">
+            <div class="furn-drawer-total">
+                <span>الإجمالي المقدر:</span>
+                <span id="cartDrawerTotal" style="color:#B87342; font-weight:900;">0 ر.س</span>
+            </div>
+            <button class="furn-drawer-checkout" onclick="proceedFurnWhatsAppCheckout()">
+                <span>إتمام الطلب عبر واتساب</span>
+                <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="furn-toast" id="furnToast">
+        <i class="fa-solid fa-circle-check" style="color:#25D366; font-size:20px;"></i>
+        <span id="furnToastMsg">تمت إضافة القطعة بنجاح!</span>
+    </div>
+
+    <!-- FLOATING WHATSAPP -->
+    <a href="https://wa.me/201027093535" target="_blank" class="furn-floating-whatsapp" title="تواصل مباشرة عبر واتساب">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+
+    <script src="js/store.js"></script>
+    <script>
+        var currentFurnProd = null;
+        var selectedFurnQty = 1;
+
+        async function initProductDetailPage() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var prodId = parseInt(urlParams.get('id') || '1');
+
+            var products = [];
+            var local = localStorage.getItem('mobiliar_store_data');
+            if (local) {
+                try {
+                    var parsed = JSON.parse(local);
+                    products = parsed.products || [];
+                } catch(e) {}
+            }
+            if (!products.length) {
+                try {
+                    var res = await fetch('data/products.json?v=' + Date.now());
+                    var data = await res.json();
+                    products = data.products || [];
+                } catch(e) {
+                    products = window.defaultFurnProducts || [];
+                }
+            }
+
+            currentFurnProd = products.find(function(p) { return p.id === prodId; }) || products[0];
+            if (!currentFurnProd) return;
+
+            document.getElementById('pageTitle').textContent = currentFurnProd.name + ' | متجر موبيليار هوم للأثاث';
+            document.getElementById('breadcrumbTitle').textContent = currentFurnProd.name;
+            document.getElementById('breadcrumbCategory').textContent = currentFurnProd.categoryName || 'غرف المعيشة';
+            document.getElementById('breadcrumbCategory').href = 'category?cat=' + (currentFurnProd.category || 'living');
+
+            document.getElementById('prodTitle').textContent = currentFurnProd.name;
+            document.getElementById('prodDesc').textContent = currentFurnProd.description || 'قطعة أثاث إسكندنافية راقية تجمع بين الفخامة والعملية.';
+            document.getElementById('prodPrice').textContent = currentFurnProd.price.toLocaleString() + ' ر.س';
+            document.getElementById('prodOldPrice').textContent = currentFurnProd.oldPrice ? (currentFurnProd.oldPrice.toLocaleString() + ' ر.س') : '';
+            document.getElementById('prodImage').src = currentFurnProd.image;
+            document.getElementById('prodImage').alt = currentFurnProd.name;
+            document.getElementById('prodBadge').textContent = currentFurnProd.badge || 'الأكثر طلباً';
+
+            document.getElementById('pillMaterial').textContent = currentFurnProd.material || 'خشب زان طبيعي وقماش كتان معالج';
+            document.getElementById('pillDimensions').textContent = currentFurnProd.dimensions || 'مقاسات قياسية فاخرة';
+
+            // Populate Specs Table
+            var specsBody = document.getElementById('specsFurnitureTableBody');
+            if (currentFurnProd.specs && currentFurnProd.specs.length > 0) {
+                var rows = currentFurnProd.specs.map(function(s) {
+                    var parts = s.split(':');
+                    if (parts.length > 1) {
+                        return '<tr><td>' + parts[0].trim() + '</td><td>' + parts.slice(1).join(':').trim() + '</td></tr>';
+                    }
+                    return '<tr><td>الميزة الفنية</td><td>' + s + '</td></tr>';
+                }).join('');
+                rows += '<tr><td>الخامة الأساسية</td><td>' + (currentFurnProd.material || 'أخشاب طبيعية ممتازة') + '</td></tr>';
+                rows += '<tr><td>الأبعاد الهندسية</td><td>' + (currentFurnProd.dimensions || 'تصميم مريح وفق المعايير الإسكندنافية') + '</td></tr>';
+                rows += '<tr><td>الضمان</td><td>10 سنوات شامل الهيكل ضد عيوب التصنيع والتراخي</td></tr>';
+                specsBody.innerHTML = rows;
+            }
+
+            updateDirectWhatsAppUrl();
+
+            // Populate Related Products (4 items)
+            var relatedGrid = document.getElementById('relatedFurnitureGrid');
+            var related = products.filter(function(p) { return p.id !== currentFurnProd.id; }).slice(0, 4);
+            relatedGrid.innerHTML = related.map(function(p) {
+                return '<div class="furn-prod-card">' +
+                    '<span class="furn-prod-badge">' + (p.badge || 'مميز') + '</span>' +
+                    '<a href="product?id=' + p.id + '" class="furn-prod-img-box">' +
+                        '<img src="' + p.image + '" alt="' + p.name + '">' +
+                    '</a>' +
+                    '<div class="furn-prod-body">' +
+                        '<div>' +
+                            '<div class="furn-prod-cat">' + (p.categoryName || 'أثاث منزلي') + '</div>' +
+                            '<h3 class="furn-prod-title"><a href="product?id=' + p.id + '">' + p.name + '</a></h3>' +
+                        '</div>' +
+                        '<div>' +
+                            '<div class="furn-prod-pricing">' +
+                                '<span class="furn-price-current">' + p.price.toLocaleString() + ' ر.س</span>' +
+                                (p.oldPrice ? ('<span class="furn-price-old">' + p.oldPrice.toLocaleString() + ' ر.س</span>') : '') +
+                            '</div>' +
+                            '<div class="furn-card-actions">' +
+                                '<button class="furn-btn-add" onclick="addToFurnCart('' + p.name.replace(/'/g, "\'") + '', ' + p.price + ', '' + p.image + '')">' +
+                                    '<i class="fa-solid fa-cart-plus"></i>' +
+                                    '<span>إضافة للسلة</span>' +
+                                '</button>' +
+                                '<a href="product?id=' + p.id + '" class="furn-btn-view">' +
+                                    '<i class="fa-regular fa-eye"></i>' +
+                                    '<span>عرض المنتج</span>' +
+                                '</a>' +
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+        }
+
+        function changeFurnDetailQty(delta) {
+            selectedFurnQty = Math.max(1, selectedFurnQty + delta);
+            document.getElementById('furnDetailQty').textContent = selectedFurnQty;
+            updateDirectWhatsAppUrl();
+        }
+
+        function updateDirectWhatsAppUrl() {
+            if (!currentFurnProd) return;
+            var waMsg = "مرحباً موبيليار هوم للأثاث،\nأود الاستفسار وطلب شراء قطعة الأثاث:\n*" + currentFurnProd.name + "*\nالسعر: *" + currentFurnProd.price + " ر.س*\nالكمية: *" + selectedFurnQty + "*\nالرابط: " + window.location.href;
+            var waPhone = "201027093535";
+            try {
+                var local = JSON.parse(localStorage.getItem('mobiliar_store_data') || '{}');
+                if (local.storeInfo && local.storeInfo.whatsapp) {
+                    waPhone = local.storeInfo.whatsapp.replace(/[^0-9]/g, '');
+                }
+            } catch(e) {}
+            document.getElementById('btnDirectFurnWhatsApp').href = 'https://wa.me/' + waPhone + '?text=' + encodeURIComponent(waMsg);
+        }
+
+        function addCurrentProductToFurnCart() {
+            if (!currentFurnProd) return;
+            for (var i = 0; i < selectedFurnQty; i++) {
+                addToFurnCart(currentFurnProd.name, currentFurnProd.price, currentFurnProd.image);
+            }
+        }
+
+        function switchFurnTab(tabId, btn) {
+            document.querySelectorAll('.furn-tab-body').forEach(function(el) { el.style.display = 'none'; });
+            document.querySelectorAll('.tab-trigger').forEach(function(b) { b.classList.remove('active'); });
+            document.getElementById(tabId).style.display = 'block';
+            btn.classList.add('active');
+        }
+
+        document.addEventListener('DOMContentLoaded', initProductDetailPage);
+    </script>
+</body>
+</html>

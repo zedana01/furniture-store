@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="catPageTitle">أقسام وتصنيفات الأثاث | موبيليار هوم للأثاث</title>
+    <meta name="description" content="تصفح تشكيلة الأثاث الإسكندنافي العصري للغرف: كنب، غرف نوم، طاولات سفرة، كراسي استرخاء، ووحدات إضاءة بضمان 10 سنوات وشحن مجاني.">
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Main Style -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- 1. TOP ANNOUNCEMENT BAR -->
+    <div class="furn-topbar">
+        <div class="container">
+            <div class="furn-topbar-inner">
+                <div class="furn-topbar-text">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>عروض موبيليار الكبرى للأثاث المنزلي: شحن وتركيب مجاني لكافة مدن المملكة + ضمان 10 سنوات على الهياكل الخشبية!</span>
+                </div>
+                <div class="furn-top-links">
+                    <a href="contact.html"><i class="fa-solid fa-phone"></i> خدمة العملاء: 800-123-4567</a>
+                    <a href="admin/index.html"><i class="fa-solid fa-lock"></i> لوحة الإدارة</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. MAIN HEADER -->
+    <header class="site-header" style="background:#ffffff; border-bottom:1px solid #ECE7DF; position:sticky; top:0; z-index:999; box-shadow:0 4px 20px rgba(0,0,0,0.03);">
+        <div class="container">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:18px 0; gap:24px;">
+                <!-- Logo -->
+                <a href="index.html" style="display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit;">
+                    <div style="width:46px; height:46px; background:#B87342; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:22px;">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <div>
+                        <span style="font-size:21px; font-weight:900; color:#1F2421; display:block; line-height:1.2;">موبيليار هوم</span>
+                        <span style="font-size:10.5px; font-weight:800; color:#8E9893; letter-spacing:1px; display:block;">MOBILIAR HOME FURNITURE</span>
+                    </div>
+                </a>
+
+                <!-- Search Bar -->
+                <div style="flex:1; max-width:540px; position:relative;">
+                    <div style="display:flex; align-items:center; width:100%;">
+                        <input type="text" id="catSearchInput" oninput="searchCategoryProducts()" placeholder="ابحث في هذا القسم بالاسم أو الخامة..." style="width:100%; padding:12px 18px 12px 50px; border-radius:50px; border:1.5px solid #ECE7DF; background:#FBF9F6; font-family:inherit; font-size:13.5px; outline:none; transition:all 0.25s;">
+                        <button type="button" style="position:absolute; left:6px; width:38px; height:38px; background:#B87342; border:none; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center;">
+                            <i class="fa-solid fa-magnifying-glass" style="font-size:14px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div style="display:flex; align-items:center; gap:16px;">
+                    <a href="shop.html" style="position:relative; width:44px; height:44px; border-radius:12px; background:#FBF9F6; border:1px solid #ECE7DF; display:flex; align-items:center; justify-content:center; color:#2C302E; text-decoration:none;" title="المفضلة">
+                        <i class="fa-regular fa-heart" style="font-size:18px;"></i>
+                        <span class="wishlist-count" id="wishlistCountBadge" style="position:absolute; top:-6px; right:-6px; background:#B87342; color:#fff; font-size:11px; font-weight:800; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center;">0</span>
+                    </a>
+                    <button onclick="toggleFurnCartDrawer()" style="display:flex; align-items:center; gap:10px; padding:10px 18px; border-radius:12px; background:#2C302E; color:#fff; border:none; cursor:pointer; font-family:inherit; font-weight:800; font-size:13.5px; box-shadow:0 4px 14px rgba(44,48,46,0.18);">
+                        <i class="fa-solid fa-bag-shopping" style="color:#D4A373; font-size:16px;"></i>
+                        <span>سلة الأثاث</span>
+                        <span class="cart-count" id="cartCountBadge" style="background:#B87342; color:#fff; font-size:11px; padding:2px 7px; border-radius:50px; margin-right:4px;">0</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Navigation Links Bar -->
+            <nav style="display:flex; align-items:center; justify-content:space-between; border-top:1px solid #F4EBE2; padding:10px 0;">
+                <ul style="display:flex; align-items:center; gap:26px; list-style:none; margin:0; padding:0; flex-wrap:wrap;">
+                    <li><a href="index.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">الرئيسية</a></li>
+                    <li><a href="shop.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">المتجر والكتالوج</a></li>
+                    <li><a href="category?cat=living" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">أثاث غرف المعيشة</a></li>
+                    <li><a href="category?cat=bedroom" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">غرف النوم والأسرّة</a></li>
+                    <li><a href="category?cat=dining" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">طاولات السفرة</a></li>
+                    <li><a href="category?cat=recliners" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">كراسي الاسترخاء</a></li>
+                    <li><a href="category?cat=decor" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">الإضاءة والديكور</a></li>
+                    <li><a href="about.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">من نحن</a></li>
+                    <li><a href="contact.html" style="font-size:14px; font-weight:700; color:#2C302E; text-decoration:none;">اتصل بنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- 3. WIDE CATEGORY BANNER HERO (CINEMATIC) -->
+    <section class="furn-cat-banner-section">
+        <div class="container">
+            <div class="furn-cat-banner-card">
+                <img id="catBannerBg" class="furn-cat-banner-bg" src="images/cat_banner_living.jpg" alt="بانر القسم العريض">
+                <div class="furn-cat-banner-overlay"></div>
+                <div class="furn-cat-banner-content">
+                    <div class="furn-cat-breadcrumb">
+                        <a href="index.html"><i class="fa-solid fa-house"></i> الرئيسية</a>
+                        <i class="fa-solid fa-chevron-left" style="font-size:11px;"></i>
+                        <a href="shop.html">أقسام الأثاث</a>
+                        <i class="fa-solid fa-chevron-left" style="font-size:11px;"></i>
+                        <span id="catBreadcrumbTitle">غرف المعيشة</span>
+                    </div>
+                    <h1 class="furn-cat-banner-title" id="catTitle">أثاث غرف المعيشة والكنب النورديك الفاخر</h1>
+                    <p class="furn-cat-banner-desc" id="catDesc">أطقم كنب زاوية ومفردات مودرن بأقمشة مخملية وكتان إسكندنافي مع حشوات فوم ميموري ونوابض جيبية توفر أقصى درجات الراحة.</p>
+                    <div class="furn-cat-banner-stats">
+                        <span id="catCountBadge"><i class="fa-solid fa-boxes-stacked"></i> تصاميم متوفرة في هذا القسم</span>
+                        <span><i class="fa-solid fa-shield-halved"></i> ضمان 10 سنوات شامل</span>
+                        <span><i class="fa-solid fa-truck-fast"></i> توصيل وتركيب مجاني</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Category Switcher Chips -->
+            <div class="furn-cat-chips-bar">
+                <a href="category?cat=all" class="furn-cat-chip" data-cat="all">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>كل تشكيلات الأثاث</span>
+                </a>
+                <a href="category?cat=living" class="furn-cat-chip" data-cat="living">
+                    <i class="fa-solid fa-couch"></i>
+                    <span>غرف المعيشة</span>
+                </a>
+                <a href="category?cat=bedroom" class="furn-cat-chip" data-cat="bedroom">
+                    <i class="fa-solid fa-bed"></i>
+                    <span>غرف النوم والأسرّة</span>
+                </a>
+                <a href="category?cat=dining" class="furn-cat-chip" data-cat="dining">
+                    <i class="fa-solid fa-utensils"></i>
+                    <span>طاولات الطعام</span>
+                </a>
+                <a href="category?cat=recliners" class="furn-cat-chip" data-cat="recliners">
+                    <i class="fa-solid fa-chair"></i>
+                    <span>كراسي الاسترخاء</span>
+                </a>
+                <a href="category?cat=decor" class="furn-cat-chip" data-cat="decor">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <span>الإضاءة والديكور</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. MAIN CATEGORY PRODUCTS SECTION (EXACT 4 COLUMNS ON DESKTOP, ZERO WHITESPACE) -->
+    <section style="padding:40px 0 70px; background:#ffffff;">
+        <div class="container">
+            <!-- Controls Bar -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:28px; flex-wrap:wrap; gap:14px; background:#FBF9F6; padding:14px 22px; border-radius:14px; border:1px solid #ECE7DF;">
+                <div style="font-size:15px; font-weight:800; color:#1F2421; display:flex; align-items:center; gap:8px;">
+                    <i class="fa-solid fa-couch" style="color:#B87342;"></i>
+                    <span id="catProductsStatus">جاري تحميل تشكيلة هذا القسم...</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <span style="font-size:13.5px; color:#66706B; font-weight:700;">ترتيب حسب:</span>
+                    <select id="catSortSelect" onchange="sortCategoryProducts()" style="padding:8px 14px; border:1.5px solid #ECE7DF; border-radius:10px; font-family:inherit; font-size:13px; font-weight:700; outline:none; background:#fff; cursor:pointer;">
+                        <option value="featured">الأكثر طلباً وتميزاً</option>
+                        <option value="price-asc">السعر: من الأقل للأعلى</option>
+                        <option value="price-desc">السعر: من الأعلى للأقل</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Products Grid Container: 4 Columns on Desktop -->
+            <div class="furn-category-products-grid" id="categoryProductsGrid">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Cross-Category Recommendations -->
+            <div id="recommendationsWrapper" style="margin-top:50px; padding-top:40px; border-top:1.5px solid #ECE7DF;">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+                    <div>
+                        <span style="font-size:13px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">اقتراحات مصممي الديكور</span>
+                        <h3 style="font-size:22px; font-weight:900; color:#1F2421; margin:0;">قطع مميزة تناسب تصميم منزلك</h3>
+                    </div>
+                    <a href="shop.html" style="padding:10px 20px; font-size:13px; font-weight:800; color:#2C302E; text-decoration:none; border-radius:10px; border:1.5px solid #ECE7DF; background:#FBF9F6; transition:all 0.2s;">
+                        <span>تصفح كل المتجر</span>
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+                <div class="furn-category-products-grid" id="recommendationsGrid">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. SITE FOOTER -->
+    <footer style="background:#2C302E; color:#F4EBE2; padding:60px 0 30px; border-top:3px solid #B87342;">
+        <div class="container">
+            <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:24px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; font-size:13px; color:#8E9893;">
+                <div>© 2026 متجر موبيليار هوم للأثاث (Mobiliar Home). كافة الحقوق محفوظة ومسجلة رسمياً.</div>
+                <div style="display:flex; gap:12px; font-size:20px; color:#C4BBB0;">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SLIDE-OUT CART DRAWER -->
+    <div class="cart-overlay" id="cartOverlay" onclick="closeFurnCartDrawer()" style="position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9998; opacity:0; pointer-events:none; transition:opacity 0.3s;"></div>
+    <div class="cart-drawer" id="cartDrawer" style="position:fixed; top:0; left:0; width:100%; max-width:420px; height:100%; background:#ffffff; z-index:9999; box-shadow:4px 0 25px rgba(0,0,0,0.15); display:flex; flex-direction:column; transform:translateX(-100%); transition:transform 0.35s cubic-bezier(0.16,1,0.3,1);">
+        <div style="padding:20px 24px; border-bottom:1.5px solid #ECE7DF; display:flex; align-items:center; justify-content:space-between; background:#FBF9F6;">
+            <h3 style="font-size:18px; font-weight:900; color:#1F2421; margin:0; display:flex; align-items:center; gap:8px;">
+                <i class="fa-solid fa-couch" style="color:#B87342;"></i>
+                <span>سلة مشتريات الأثاث</span>
+                <span id="furnCartHeaderCount" style="font-size:13px; background:#B87342; color:#fff; padding:2px 8px; border-radius:50px;">0</span>
+            </h3>
+            <button onclick="closeFurnCartDrawer()" style="background:none; border:none; font-size:20px; color:#66706B; cursor:pointer;"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div id="cartDrawerItems" style="flex:1; overflow-y:auto; padding:10px 24px;"></div>
+        <div style="padding:20px 24px; border-top:1.5px solid #ECE7DF; background:#FBF9F6;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                <span style="font-size:15px; font-weight:800; color:#66706B;">الإجمالي المقدر:</span>
+                <span id="cartTotalPrice" style="font-size:22px; font-weight:900; color:#B87342;">0 ر.س</span>
+            </div>
+            <button onclick="proceedFurnCheckout()" style="width:100%; padding:14px; background:#25d366; color:#fff; border:none; border-radius:12px; font-weight:800; font-size:15px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:10px; box-shadow:0 6px 18px rgba(37,211,102,0.35);">
+                <i class="fa-brands fa-whatsapp" style="font-size:20px;"></i>
+                <span>إتمام الطلب وتأكيد التوصيل عبر واتساب</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201027093535" target="_blank" class="furn-floating-whatsapp" title="تواصل عبر واتساب">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/store.js"></script>
+    <script>
+    const categoryMetadata = {
+        'living': {
+            name: 'أثاث غرف المعيشة',
+            banner: 'images/cat_banner_living.jpg',
+            title: 'أثاث غرف المعيشة والكنب النورديك الفاخر',
+            desc: 'أطقم كنب زاوية ومفردات مودرن بأقمشة مخملية وكتان إسكندنافي مع حشوات فوم ميموري ونوابض جيبية توفر أقصى درجات الراحة.'
+        },
+        'bedroom': {
+            name: 'غرف النوم والأسرّة',
+            banner: 'images/cat_banner_bedroom.jpg',
+            title: 'أجنحة غرف النوم الفندقية والأسرّة الملكية',
+            desc: 'تصاميم نوم فندقية تجمع بين صلابة خشب البلوط الطبيعي والألواح الداعمة المانعة للاهتزاز مع وحدات تخزين متكاملة وكمودينات أنيقة.'
+        },
+        'dining': {
+            name: 'طاولات وكراسي السفرة',
+            banner: 'images/cat_banner_dining.jpg',
+            title: 'طاولات طعام رخامية وخشبية وكراسي مخملية',
+            desc: 'اجمع العائلة بأرقى تفاصيل الضيافة مع طاولات طعام خشب جوز إيطالي وأسطح رخام كارارا طبيعي مقاوم للحرارة والبقع.'
+        },
+        'recliners': {
+            name: 'كراسي الاسترخاء والمفردات',
+            banner: 'images/cat_banner_recliners.jpg',
+            title: 'كراسي القراءة العصرية ومقاعد البوكليه',
+            desc: 'كراسي مفردة مميزة تحتضن الجسم بنعومة فائقة، بقماش البوكليه الناعم وأرجل خشبية صلبة تمنح زاوية القراءة لمسة دافئة.'
+        },
+        'decor': {
+            name: 'وحدات الإضاءة والديكور',
+            banner: 'images/cat_banner_decor.jpg',
+            title: 'مصابيح أرضية وديكورات آرت ديكو ونحاس',
+            desc: 'وحدات إضاءة هندسية مدروسة تبرز جمال المساحات والألوان، مع أباجورات ومصابيح بأطر نحاسية مطفية وتوهج دافئ ومريح للعين.'
+        },
+        'all': {
+            name: 'كافة تشكيلات الأثاث',
+            banner: 'images/cat_banner_all.jpg',
+            title: 'تشكيلة موبيليار هوم الكاملة للأثاث العصري الراقي',
+            desc: 'استكشف أحدث تصميمات الأثاث المنزلي الإسكندنافي والكلاسيكي المصنوعة من أخشاب البلوط والزان الطبيعي والأقمشة المعالجة الفاخرة.'
+        }
+    };
+
+    let allProducts = defaultFurnProducts;
+    let currentCat = 'all';
+
+    function getParam(key) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(key);
+    }
+
+    function matchCategory(p, cat) {
+        if (!cat || cat === 'all') return true;
+        var target = (cat || '').toLowerCase().trim();
+        var pCat = (p.category || '').toLowerCase().trim();
+        var pCatName = (p.categoryName || '').toLowerCase().trim();
+        var pName = (p.name || p.title || '').toLowerCase().trim();
+
+        if (target === 'living') {
+            return pCat === 'living' || pCatName.indexOf('معيشة') !== -1 || pName.indexOf('كنب') !== -1 || pName.indexOf('بوفيه') !== -1 || pName.indexOf('قهوة') !== -1;
+        }
+        if (target === 'bedroom') {
+            return pCat === 'bedroom' || pCatName.indexOf('نوم') !== -1 || pName.indexOf('سرير') !== -1 || pName.indexOf('دولاب') !== -1 || pName.indexOf('كمودين') !== -1;
+        }
+        if (target === 'dining') {
+            return pCat === 'dining' || pCatName.indexOf('طعام') !== -1 || pCatName.indexOf('سفرة') !== -1 || pName.indexOf('طاولة طعام') !== -1 || pName.indexOf('كراسي طعام') !== -1;
+        }
+        if (target === 'recliners') {
+            return pCat === 'recliners' || pCatName.indexOf('استرخاء') !== -1 || pCatName.indexOf('مفرد') !== -1 || pName.indexOf('كرسي') !== -1 || pName.indexOf('شيزلونج') !== -1;
+        }
+        if (target === 'decor') {
+            return pCat === 'decor' || pCatName.indexOf('إضاءة') !== -1 || pCatName.indexOf('ديكور') !== -1 || pName.indexOf('مصباح') !== -1 || pName.indexOf('ثريا') !== -1;
+        }
+        return pCat === target;
+    }
+
+    function renderCategoryCard(p) {
+        var specsChips = (p.specs || []).slice(0, 2).map(function(s) {
+            return '<span style="display:inline-block; font-size:11px; font-weight:700; background:#FBF9F6; color:#66706B; padding:3px 8px; border-radius:6px; border:1px solid #ECE7DF;">' + s + '</span>';
+        }).join('');
+        var escapedName = (p.name || p.title).replace(/'/g, "\'");
+        var oldPriceHtml = p.oldPrice ? '<span style="font-size:13px; color:#8E9893; text-decoration:line-through;">' + Number(p.oldPrice).toLocaleString('en-US') + ' ر.س</span>' : '';
+
+        return `
+            <div class="product-card furn-card" data-category="${p.category}">
+                <span class="product-badge" style="position:absolute; top:12px; right:12px; background:linear-gradient(135deg, #B87342, #9E5D30); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:50px; z-index:3;">${p.badge || 'مميز'}</span>
+                <button class="wishlist-btn" onclick="toggleFurnWishlist(${p.id})" style="position:absolute; top:12px; left:12px; background:rgba(255,255,255,0.9); border:none; width:34px; height:34px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#2C302E; cursor:pointer; z-index:3; box-shadow:0 2px 6px rgba(0,0,0,0.06);" title="إضافة للرغبات">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+                <a href="product?id=${p.id}" class="product-thumb-box" style="display:block; position:relative; height:230px; overflow:hidden; background:#FBF9F6; text-decoration:none;">
+                    <img src="${p.image}" alt="${p.name || p.title}" style="width:100%; height:100%; object-fit:cover; transition:transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);">
+                </a>
+                <div class="product-info-box" style="padding:16px 18px 20px; display:flex; flex-direction:column; flex:1; justify-content:space-between; background:#ffffff; border-top:1px solid #ECE7DF;">
+                    <div>
+                        <span style="font-size:12px; font-weight:800; color:#B87342; display:block; margin-bottom:4px;">${p.categoryName || 'أثاث منزلي'}</span>
+                        <h3 style="font-size:15px; font-weight:800; color:#1F2421; line-height:1.4; margin-bottom:8px; min-height:42px;">
+                            <a href="product?id=${p.id}" style="color:inherit; text-decoration:none;">${p.name || p.title}</a>
+                        </h3>
+                        <div style="display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;">
+                            ${specsChips}
+                        </div>
+                    </div>
+                    <div>
+                        <div style="display:flex; align-items:baseline; gap:8px; margin-top:8px;">
+                            <span style="font-size:17px; font-weight:900; color:#1F2421;">${Number(p.price).toLocaleString('en-US')} ر.س</span>
+                            ${oldPriceHtml}
+                        </div>
+                        <div class="furn-card-actions">
+                            <button class="furn-btn-add" onclick="addFurnToCart(${p.id}, '${escapedName}', ${p.price}, '${p.image}')">
+                                <i class="fa-solid fa-cart-plus"></i>
+                                <span>إضافة للسلة</span>
+                            </button>
+                            <a href="product?id=${p.id}" class="furn-btn-view">
+                                <i class="fa-regular fa-eye"></i>
+                                <span>عرض المنتج</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    async function loadDataAndInit() {
+        var param = getParam('cat') || 'all';
+        currentCat = param.toLowerCase();
+
+        try {
+            var local = localStorage.getItem('mobiliar_store_data');
+            if (local) {
+                var parsed = JSON.parse(local);
+                if (parsed && Array.isArray(parsed.products) && parsed.products.length > 0) {
+                    allProducts = parsed.products;
+                }
+            }
+        } catch(e) {}
+
+        renderCategoryHeader(currentCat);
+        highlightActiveChip(currentCat);
+        renderProducts(currentCat);
+        renderRecommendations(currentCat);
+    }
+
+    function renderCategoryHeader(cat) {
+        var meta = categoryMetadata[cat] || categoryMetadata['all'];
+        document.getElementById('catPageTitle').textContent = meta.name + ' | موبيليار هوم للأثاث';
+        document.getElementById('catBannerBg').src = meta.banner;
+        document.getElementById('catBreadcrumbTitle').textContent = meta.name;
+        document.getElementById('catTitle').textContent = meta.title;
+        document.getElementById('catDesc').textContent = meta.desc;
+    }
+
+    function highlightActiveChip(cat) {
+        var chips = document.querySelectorAll('.furn-cat-chip');
+        chips.forEach(function(c) {
+            var chipCat = c.getAttribute('data-cat');
+            if (chipCat === cat) c.classList.add('active');
+            else c.classList.remove('active');
+        });
+    }
+
+    function renderProducts(cat, searchTerm) {
+        var grid = document.getElementById('categoryProductsGrid');
+        var filtered = allProducts.filter(function(p) { return matchCategory(p, cat); });
+
+        if (searchTerm) {
+            var term = searchTerm.toLowerCase().trim();
+            filtered = filtered.filter(function(p) {
+                return (p.name || p.title || '').toLowerCase().indexOf(term) !== -1 || (p.material || '').toLowerCase().indexOf(term) !== -1;
+            });
+        }
+
+        var countBadge = document.getElementById('catCountBadge');
+        if (countBadge) countBadge.innerHTML = '<i class="fa-solid fa-boxes-stacked"></i> ' + filtered.length + ' تصاميم متوفرة في هذا القسم';
+
+        var statusEl = document.getElementById('catProductsStatus');
+        if (statusEl) statusEl.textContent = 'تم العثور على ' + filtered.length + ' قطعة أثاث في هذا القسم';
+
+        if (filtered.length === 0) {
+            grid.innerHTML = `
+                <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; background: #ffffff; border-radius: 20px; border: 1.5px dashed #ECE7DF; width: 100%;">
+                    <i class="fa-solid fa-couch" style="font-size: 46px; color: #D8CEBE; margin-bottom: 14px;"></i>
+                    <h3 style="font-size: 19px; color: #2C302E; margin-bottom: 8px;">لم نجد قطع مطابقة للبحث في هذا القسم</h3>
+                    <p style="color: #66706B; font-size: 14px; margin-bottom: 18px;">جرب تصفح الأقسام الأخرى أو عرض كافة التشكيلات</p>
+                    <a href="category?cat=all" class="furn-btn-add" style="display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 12px; background:#B87342; color:#fff; text-decoration:none; font-weight:800; width:auto;">
+                        <i class="fa-solid fa-layer-group"></i> عرض كل أثاث المتجر
+                    </a>
+                </div>
+            `;
+            return;
+        }
+
+        grid.innerHTML = filtered.map(function(p) { return renderCategoryCard(p); }).join('');
+    }
+
+    function renderRecommendations(cat) {
+        var recGrid = document.getElementById('recommendationsGrid');
+        if (!recGrid) return;
+        var others = allProducts.filter(function(p) { return !matchCategory(p, cat); });
+        if (others.length === 0) others = allProducts.slice(0, 4);
+        var selected = others.slice(0, 4);
+        recGrid.innerHTML = selected.map(function(p) { return renderCategoryCard(p); }).join('');
+    }
+
+    function searchCategoryProducts() {
+        var input = document.getElementById('catSearchInput');
+        if (!input) return;
+        renderProducts(currentCat, input.value);
+    }
+
+    function sortCategoryProducts() {
+        var val = document.getElementById('catSortSelect').value;
+        if (val === 'price-asc') {
+            allProducts.sort(function(a, b) { return a.price - b.price; });
+        } else if (val === 'price-desc') {
+            allProducts.sort(function(a, b) { return b.price - a.price; });
+        } else {
+            allProducts.sort(function(a, b) { return a.id - b.id; });
+        }
+        renderProducts(currentCat);
+    }
+
+    document.addEventListener('DOMContentLoaded', loadDataAndInit);
+    </script>
+</body>
+</html>
