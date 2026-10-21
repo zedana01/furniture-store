@@ -350,61 +350,49 @@ function updateFurnCartUI() {
 // Drawer Toggle
 function toggleFurnCartDrawer() {
     var drawer = document.getElementById('cartDrawer') || document.getElementById('furnCartDrawer');
-    var overlay = document.getElementById('cartOverlay') || document.getElementById('furnCartOverlay');
     if (!drawer) return;
-    drawer.classList.toggle('active');
-    if (overlay) overlay.classList.toggle('active');
+    if (drawer.classList.contains('active')) {
+        closeFurnCartDrawer();
+    } else {
+        openFurnCartDrawer();
+    }
 }
 
 function openFurnCartDrawer() {
     var drawer = document.getElementById('cartDrawer') || document.getElementById('furnCartDrawer');
     var overlay = document.getElementById('cartOverlay') || document.getElementById('furnCartOverlay');
-    if (drawer) drawer.classList.add('active');
-    if (overlay) overlay.classList.add('active');
+    if (drawer) {
+        drawer.classList.add('active');
+        drawer.style.setProperty('transform', 'translateX(0)', 'important');
+    }
+    if (overlay) {
+        overlay.classList.add('active');
+        overlay.style.setProperty('opacity', '1', 'important');
+        overlay.style.setProperty('pointer-events', 'auto', 'important');
+        overlay.style.setProperty('visibility', 'visible', 'important');
+    }
 }
 
 function closeFurnCartDrawer() {
     var drawer = document.getElementById('cartDrawer') || document.getElementById('furnCartDrawer');
     var overlay = document.getElementById('cartOverlay') || document.getElementById('furnCartOverlay');
-    if (drawer) drawer.classList.remove('active');
-    if (overlay) overlay.classList.remove('active');
-}
-
-// Wishlist Toggle
-function toggleFurnWishlist(id) {
-    var idx = furnWishlist.indexOf(id);
-    if (idx !== -1) {
-        furnWishlist.splice(idx, 1);
-        showFurnToast('تمت إزالة القطعة من قائمة الرغبات');
-    } else {
-        furnWishlist.push(id);
-        showFurnToast('تمت إضافة القطعة لقائمة الرغبات ❤️');
+    if (drawer) {
+        drawer.classList.remove('active');
+        drawer.style.setProperty('transform', 'translateX(-100%)', 'important');
     }
-    saveFurnWishlist();
-}
-
-function updateFurnWishlistUI() {
-    var count = furnWishlist.length;
-    var badges = document.querySelectorAll('.wishlist-count, #wishlistCountBadge, #mobileWishlistCount');
-    badges.forEach(function(b) {
-        b.textContent = count;
-    });
-}
-
-// Direct WhatsApp Checkout
-function proceedFurnCheckout() {
-    if (furnCart.length === 0) {
-        showFurnToast('سلة المشتريات فارغة، الرجاء اختيار قطع أثاث أولاً!');
-        return;
+    if (overlay) {
+        overlay.classList.remove('active');
+        overlay.style.setProperty('opacity', '0', 'important');
+        overlay.style.setProperty('pointer-events', 'none', 'important');
+        overlay.style.setProperty('visibility', 'hidden', 'important');
     }
+}
 
-    var waPhone = "201027093535";
-    try {
-        var local = JSON.parse(localStorage.getItem('mobiliar_store_data') || '{}');
-        if (local && local.storeInfo && local.storeInfo.whatsappFormatted) {
-            waPhone = local.storeInfo.whatsappFormatted;
-        }
-    } catch(e) {}
+// Aliases
+function proceedFurnWhatsAppCheckout() {
+    proceedFurnCheckout();
+}
+ catch(e) {}
 
     var totalSum = 0;
     var text = "مرحباً، أود إتمام طلب الأثاث التالي من متجر *موبيليار هوم للأثاث*:\n\n";
