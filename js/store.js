@@ -465,15 +465,35 @@ function showFurnSlide(idx) {
     if (idx < 0) idx = slides.length - 1;
     currentFurnSlide = idx;
 
-    slides.forEach(function(s, i) {
-        if (i === currentFurnSlide) s.classList.add('active');
-        else s.classList.remove('active');
-    });
+    for (var i = 0; i < slides.length; i++) {
+        var s = slides[i];
+        if (i === currentFurnSlide) {
+            s.classList.add('active');
+            s.style.setProperty('opacity', '1', 'important');
+            s.style.setProperty('visibility', 'visible', 'important');
+            s.style.setProperty('pointer-events', 'auto', 'important');
+            s.style.setProperty('z-index', '2', 'important');
+        } else {
+            s.classList.remove('active');
+            s.style.setProperty('opacity', '0', 'important');
+            s.style.setProperty('visibility', 'hidden', 'important');
+            s.style.setProperty('pointer-events', 'none', 'important');
+            s.style.setProperty('z-index', '1', 'important');
+        }
+    }
 
-    dots.forEach(function(d, i) {
-        if (i === currentFurnSlide) d.classList.add('active');
-        else d.classList.remove('active');
-    });
+    for (var j = 0; j < dots.length; j++) {
+        var d = dots[j];
+        if (j === currentFurnSlide) {
+            d.classList.add('active');
+            d.style.background = '#B87342';
+            d.style.width = '24px';
+        } else {
+            d.classList.remove('active');
+            d.style.background = 'rgba(255,255,255,0.5)';
+            d.style.width = '8px';
+        }
+    }
 }
 
 function nextFurnSlide() {
